@@ -55,6 +55,7 @@ Plug 'sbdchd/neoformat'
 Plug 'williamboman/mason.nvim'
 Plug 'williamboman/mason-lspconfig.nvim'
 Plug 'neovim/nvim-lspconfig'
+Plug 'rescript-lang/vim-rescript'
 
 call plug#end()
 
@@ -82,6 +83,7 @@ augroup END
 let g:copilot_filetypes = {
       \ 'text': v:false,
       \ 'markdown': v:false,
+      \ 'typst': v:false,
       \ }
 
 let NERDTreeCaseSensitiveSort = 1
