@@ -1,3 +1,4 @@
+set encoding=utf-8
 lang en_US.UTF-8
 set expandtab
 set ts=2
@@ -49,11 +50,11 @@ Plug 'kevinhwang91/nvim-ufo'
 Plug 'hrsh7th/nvim-cmp'
 Plug 'hrsh7th/cmp-nvim-lsp'
 
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
 Plug 'kaarmu/typst.vim'
 Plug 'sbdchd/neoformat'
 
-Plug 'williamboman/mason.nvim'
-Plug 'williamboman/mason-lspconfig.nvim'
 Plug 'neovim/nvim-lspconfig'
 Plug 'rescript-lang/vim-rescript'
 
@@ -61,13 +62,13 @@ call plug#end()
 
 nmap gd <cmd>lua vim.lsp.buf.definition()<CR>
 nmap gi <cmd>lua vim.lsp.buf.implementation()<CR>
+nmap gr <cmd>lua vim.lsp.buf.references()<CR>
 nmap <leader>rn <cmd>lua vim.lsp.buf.rename()<CR>
 nmap <leader>ca <cmd>lua vim.lsp.buf.code_action()<CR>
-nmap [d <cmd>lua vim.diagnostic.goto_prev()<CR>
-nmap ]d <cmd>lua vim.diagnostic.goto_next()<CR>
 nmap K <cmd>lua vim.lsp.buf.hover()<CR>
 nmap zR <cmd>lua require'ufo'.openAllFolds()<CR>
 nmap zM <cmd>lua require'ufo'.closeAllFolds()<CR>
+nmap <leader>ff <cmd>FZF<CR>
 
 augroup my_filetype
     au!
@@ -94,15 +95,8 @@ highlight Normal guibg=NONE
 highlight Comment guifg=#797d9c
 highlight LineNr guifg=#727594
 
-let g:opambin = substitute(system('opam var bin'),'\n$','','''')
-let g:neoformat_ocaml_ocamlformat = {
-            \ 'exe': g:opambin . '/ocamlformat',
-            \ 'no_append': 1,
-            \ 'stdin': 1,
-            \ 'args': ['--enable-outside-detected-project', '--name', '"%:p"', '-']
-            \ }
-
 let g:neoformat_enabled_ocaml = ['ocamlformat']
+let g:neoformat_enabled_javascript = ['prettier']
 
 augroup fmt
   autocmd!
@@ -112,9 +106,6 @@ augroup END
 dig \- 8866  " ⊢
 
 lua << EOF
-require"mason".setup()
-require"mason-lspconfig".setup()
-
 -- setup lsp with folding
 local capabilities = require'cmp_nvim_lsp'.default_capabilities()
 capabilities.textDocument.foldingRange = {
@@ -128,6 +119,8 @@ local language_servers = {
   'pyright',
   'ocamllsp',
   'typst_lsp',
+  'rescriptls',
+  'tailwindcss',
 }
 for _, server in ipairs(language_servers) do
   lspconfig[server].setup{
