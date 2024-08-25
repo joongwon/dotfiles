@@ -1,2 +1,15 @@
 #!/bin/bash
-ln -s "$PWD/init.vim" "$HOME/.config/nvim/init.vim"
+
+function link() {
+  if [ -e "$2" ]; then
+    echo "File $2 already exists"
+  else
+    ln -s "$1" "$2"
+    echo "Linked $1 to $2"
+  fi
+}
+
+mkdir -p "$HOME/.config/nvim"
+mkdir -p "$HOME/.local/share"
+link "$PWD/init.vim" "$HOME/.config/nvim/init.vim"
+link "$PWD/libhangul" "$HOME/.local/share/libhangul"
