@@ -44,7 +44,6 @@ Plug 'whonore/Coqtail'
 Plug 'tikhomirov/vim-glsl'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
-Plug 'stevearc/aerial.nvim'
 Plug 'kevinhwang91/promise-async'
 Plug 'kevinhwang91/nvim-ufo'
 Plug 'hrsh7th/nvim-cmp'
@@ -60,6 +59,8 @@ Plug 'rescript-lang/vim-rescript'
 
 call plug#end()
 
+nmap ]d <cmd>lua vim.diagnostic.goto_next()<CR>
+nmap [d <cmd>lua vim.diagnostic.goto_prev()<CR>
 nmap gd <cmd>lua vim.lsp.buf.definition()<CR>
 nmap gi <cmd>lua vim.lsp.buf.implementation()<CR>
 nmap gr <cmd>lua vim.lsp.buf.references()<CR>
@@ -103,7 +104,32 @@ augroup fmt
   " autocmd BufWritePre * Neoformat
 augroup END
 
-dig \- 8866  " ⊢
+" ⊢
+exe 'dig \- ' .. 0x22A2
+" ⇓
+exe 'dig =v ' .. 0x21D3
+" ↦
+exe 'dig \> ' .. 0x21A6
+" ⤳
+exe 'dig ~> ' .. 0x2933
+" ⊕
+exe 'dig 0+ ' .. 0x2295
+" ℓ
+exe 'dig ll ' .. 0x2113
+" ∖
+exe 'dig \\ ' .. 0x2216
+" ∼
+exe 'dig ~~ ' .. 0x223C
+" 𝒩
+exe 'dig N# ' .. 0x1D4A9
+" †
+exe 'dig \+ ' .. 0x2020
+
+if !exists('g:airline_symbols')
+  let g:airline_symbols = {}
+endif
+let g:airline_symbols.colnr = ' co:'
+let g:airline_symbols.linenr = ' ln:'
 
 lua << EOF
 -- setup lsp with folding
@@ -118,9 +144,9 @@ local language_servers = {
   'tsserver',
   'pyright',
   'ocamllsp',
-  'typst_lsp',
   'rescriptls',
   'tailwindcss',
+  'clangd',
 }
 for _, server in ipairs(language_servers) do
   lspconfig[server].setup{
@@ -139,21 +165,6 @@ cmp.setup{
   mapping = cmp.mapping.preset.insert{},
   sources = cmp.config.sources{
     { name = 'nvim_lsp' },
-  },
-}
-require'aerial'.setup{
-  filter_kind = {
-    'Class',
-    'Function',
-    'Method',
-    'Property',
-    'Field',
-    'Enum',
-    'Interface',
-    'Module',
-    'Namespace',
-    'Struct',
-    'Variable',
   },
 }
 EOF
