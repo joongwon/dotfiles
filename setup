@@ -10,6 +10,10 @@ function link() {
 }
 
 mkdir -p "$HOME/.config/nvim"
-mkdir -p "$HOME/.local/share"
 link "$PWD/init.vim" "$HOME/.config/nvim/init.vim"
+
+mkdir -p "$HOME/.local/share"
 link "$PWD/libhangul" "$HOME/.local/share/libhangul"
+
+mkdir -p "$HOME/.vim"
+link "$PWD/vimrc" "$HOME/.vim/vimrc"
