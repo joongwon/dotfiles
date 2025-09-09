@@ -108,13 +108,6 @@ if executable('npx')
         \ 'allowlist': ['typescript', 'javascript', 'typescriptreact', 'javascriptreact'],
         \ })
 endif
-au User lsp_setup call lsp#register_server({
-      \ 'name': 'mlang',
-      \ 'cmd': {server_info->['/Users/joongwon/Desktop/ropas/mlang/_build/default/lsp/server/bin/main.exe']},
-      \ 'allowlist': ['mlang'],
-      \ })
-" 'cmd': {server_info->['/Users/joongwon/Desktop/ropas/mlang/_build/default/lsp/server/bin/main.exe']},
-" 'cmd': {server_info->['/Users/joongwon/Downloads/lowfat 3/_build/default/lsp/server/bin/main.exe']},
 
 function! s:enable_fold() abort
   setlocal foldmethod=expr
