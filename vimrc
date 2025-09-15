@@ -46,7 +46,8 @@ Plug 'whonore/Coqtail'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 
-Plug 'prabirshrestha/vim-lsp'
+"Plug 'prabirshrestha/vim-lsp'
+Plug 'joongwon/vim-lsp', { 'branch': 'remove-codeaction-only' }
 Plug 'prabirshrestha/asyncomplete.vim'
 Plug 'prabirshrestha/asyncomplete-lsp.vim'
 
@@ -96,9 +97,12 @@ if executable('tinymist')
 endif
 if executable('ocamllsp')
   au User lsp_setup call lsp#register_server({
-        \ 'name': 'ocamllsp',
-        \ 'cmd': {server_info->['ocamllsp']},
-        \ 'allowlist': ['ocaml'],
+        \   'name': 'ocamllsp',
+        \   'cmd': {server_info->['ocamllsp']},
+        \   'allowlist': ['ocaml'],
+        \   'workspace_config': {
+        \     'codelens': { 'enabled': v:true },
+        \   },
         \ })
 endif
 if executable('npx')
@@ -123,9 +127,7 @@ command! LspEnableFold call s:enable_fold()
 command! LspDisableFold call s:disable_fold()
 function! s:on_lsp_buffer_enabled() abort
   setlocal signcolumn=yes
-  if exists('+tagfunc')
-    setlocal tagfunc=lsp#tagfunc
-  endif
+  setlocal tagfunc=lsp#tagfunc
   nmap <buffer> gd <plug>(lsp-definition)
   nmap <buffer> gi <plug>(lsp-implementation)
   nmap <buffer> <leader>rn <plug>(lsp-rename)
@@ -133,9 +135,9 @@ function! s:on_lsp_buffer_enabled() abort
   nmap <buffer> ]d <plug>(lsp-next-diagnostic)
   nmap <buffer> K <plug>(lsp-hover)
   nmap <buffer> <leader>ca <plug>(lsp-code-action)
+  imap <buffer> <c-space> <plug>(asyncomplete_force_refresh)
   nnoremap <buffer> <expr><c-j> lsp#scroll(+4)
   nnoremap <buffer> <expr><c-k> lsp#scroll(-4)
-  let g:lsp_format_sync_timeout = 1000
 endfunction
 augroup lsp_install
   au!
