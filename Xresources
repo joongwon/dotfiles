@@ -1,8 +1,5 @@
 XTerm*locale: true
 XTerm*utf8: true
 XTerm.termName: xterm-256color
-XTerm*faceName: Fira Code
-XTerm*faceSize: 10
 XTerm*Background: black
 XTerm*Foreground: white
-Xft.dpi: 192

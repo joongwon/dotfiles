@@ -1,3 +1,4 @@
+xcompmgr -c &
 ~/.fehbg &
 source ~/.profile
 nimf &

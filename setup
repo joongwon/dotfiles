@@ -8,9 +8,16 @@ function link() {
   src="$PWD/$1"
   dir="$2"
   dest="$2/$3"
+  hostname=$(cat /etc/hostname)
+
+  if [ -e "$src.$hostname" ]; then
+    cat "$src" "$src.$hostname" > "$src.local"
+    src="$src.local"
+  fi
 
   msg_linked="${GREEN}Linked $src to $dest${RESET}"
   msg_exists="${YELLOW}File $dest already exists, skipping${RESET}"
+
   mkdir -p "$dir"
   if [ -L "$dest" ]; then
     if [ "$(readlink "$dest")" == "$src" ]; then
