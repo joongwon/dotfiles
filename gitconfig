@@ -1,0 +1,7 @@
+[user]
+	email = freleefty@gmail.com
+	name = Joongwon Ahn
+[core]
+	editor = vim
+[push]
+	autoSetupRemote = true

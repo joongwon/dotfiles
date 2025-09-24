@@ -1,19 +1,46 @@
 #!/bin/bash
 
+GREEN=$'\033[0;32m'
+YELLOW=$'\033[0;33m'
+RESET=$'\033[0m'
+
 function link() {
-  if [ -e "$2" ]; then
-    echo "File $2 already exists"
+  src="$PWD/$1"
+  dir="$2"
+  dest="$2/$3"
+
+  msg_linked="${GREEN}Linked $src to $dest${RESET}"
+  msg_exists="${YELLOW}File $dest already exists, skipping${RESET}"
+  mkdir -p "$dir"
+  if [ -L "$dest" ]; then
+    if [ "$(readlink "$dest")" == "$src" ]; then
+      # It's already a correct symlink
+      echo "$msg_linked"
+    else
+      # It's a symlink but points to the wrong place
+      echo "$msg_exists"
+    fi
+  elif [ -e "$dest" ]; then
+    if cmp -s "$src" "$dest"; then
+      # The files are identical; replace with symlink
+      rm "$dest"
+      ln -s "$src" "$dest"
+      echo "$msg_linked"
+    else
+      # The file exists and is different; skip
+      echo "$msg_exists"
+    fi
   else
-    ln -s "$1" "$2"
-    echo "Linked $1 to $2"
+    # It doesn't exist; create the symlink
+    ln -s "$src" "$dest"
+    echo "$msg_linked"
   fi
 }
 
-mkdir -p "$HOME/.config/nvim"
-link "$PWD/init.vim" "$HOME/.config/nvim/init.vim"
-
-mkdir -p "$HOME/.local/share"
-link "$PWD/libhangul" "$HOME/.local/share/libhangul"
-
-mkdir -p "$HOME/.vim"
-link "$PWD/vimrc" "$HOME/.vim/vimrc"
+link "init.vim"   "$HOME/.config/nvim"  "init.vim"
+link "vimrc"      "$HOME/.vim"          "vimrc"
+link "zshrc"      "$HOME"               ".zshrc"
+link "profile"    "$HOME"               ".profile"
+link "Xresources" "$HOME"               ".Xresources"
+link "gitconfig"  "$HOME"               ".gitconfig"
+link "xprofile"   "$HOME"               ".xprofile"
