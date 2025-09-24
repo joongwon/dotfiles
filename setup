@@ -37,10 +37,12 @@ function link() {
   fi
 }
 
-link "init.vim"   "$HOME/.config/nvim"  "init.vim"
-link "vimrc"      "$HOME/.vim"          "vimrc"
-link "zshrc"      "$HOME"               ".zshrc"
-link "profile"    "$HOME"               ".profile"
-link "Xresources" "$HOME"               ".Xresources"
-link "gitconfig"  "$HOME"               ".gitconfig"
-link "xprofile"   "$HOME"               ".xprofile"
+link "init.vim"       "$HOME/.config/nvim"      "init.vim"
+link "vimrc"          "$HOME/.vim"              "vimrc"
+link "zshrc"          "$HOME"                   ".zshrc"
+link "profile"        "$HOME"                   ".profile"
+link "Xresources"     "$HOME"                   ".Xresources"
+link "gitconfig"      "$HOME"                   ".gitconfig"
+link "xprofile"       "$HOME"                   ".xprofile"
+link "i3.conf"        "$HOME/.config/i3"        "config"
+link "i3status.conf"  "$HOME/.config/i3status"  "config"
