@@ -5,5 +5,9 @@
 	name = Joongwon Ahn
 [core]
 	editor = vim
+	autocrlf = input
+	whitespace = cr-at-eol
 [push]
 	autoSetupRemote = true
+[merge]
+	tool = vimdiff

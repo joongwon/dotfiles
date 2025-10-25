@@ -4,11 +4,16 @@ GREEN=$'\033[0;32m'
 YELLOW=$'\033[0;33m'
 RESET=$'\033[0m'
 
+if [ -f /etc/hostname ]; then
+  hostname=$(cat /etc/hostname)
+else
+  hostname=$(hostname)
+fi
+
 function link() {
   src="$PWD/$1"
   dir="$2"
   dest="$2/$3"
-  hostname=$(cat /etc/hostname)
 
   if [ -e "$src.$hostname" ]; then
     cat "$src" "$src.$hostname" > "$src.local"
