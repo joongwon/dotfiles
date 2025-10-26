@@ -8,7 +8,9 @@ export PROMPT='%F{120}%n@%m:%F{219}%~ %f%# ';
 
 
 # The following lines were added by compinstall
-zstyle :compinstall filename '/home/jwahn/.zshrc'
+# zstyle :compinstall filename '/home/jwahn/.zshrc'
+# ...which is replaced by the following line to reflect the correct home directory
+zstyle :compinstall filename '$HOME/.zshrc'
 
 autoload -Uz compinit
 compinit
@@ -27,3 +29,5 @@ bindkey -v
 # This section can be safely removed at any time if needed.
 [[ ! -r '$HOME/.opam/opam-init/init.zsh' ]] || source '$HOME/.opam/opam-init/init.zsh' > /dev/null 2> /dev/null
 # END opam configuration
+
+eval "$(direnv hook zsh)"
