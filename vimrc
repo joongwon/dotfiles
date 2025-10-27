@@ -14,6 +14,7 @@ set backspace=indent,eol,start
 set termguicolors
 set relativenumber
 set autoread
+set mouse=a
 
 digraph ll  8467 " ℓ
 digraph #>  8614 " ↦
@@ -55,6 +56,8 @@ Plug 'maxmellon/vim-jsx-pretty'
 
 Plug 'github/copilot.vim'
 Plug 'DanBradbury/copilot-chat.vim'
+
+Plug 'lervag/vimtex', { 'tag': 'v2.15' }
 
 call plug#end()
 

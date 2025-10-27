@@ -5,8 +5,6 @@ alias grep='grep --color=auto'
 
 export PROMPT='%F{120}%n@%m:%F{219}%~ %f%# ';
 
-
-
 # The following lines were added by compinstall
 # zstyle :compinstall filename '/home/jwahn/.zshrc'
 # ...which is replaced by the following line to reflect the correct home directory
@@ -31,3 +29,5 @@ bindkey -v
 # END opam configuration
 
 eval "$(direnv hook zsh)"
+
+[ -n "$XTERM_VERSION" ] && transset-df --id "$WINDOWID" >/dev/null
