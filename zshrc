@@ -28,6 +28,6 @@ bindkey -v
 [[ ! -r '$HOME/.opam/opam-init/init.zsh' ]] || source '$HOME/.opam/opam-init/init.zsh' > /dev/null 2> /dev/null
 # END opam configuration
 
-eval "$(direnv hook zsh)"
+command -v direnv >/dev/null 2>&1 && eval "$(direnv hook zsh)"
 
 [ -n "$XTERM_VERSION" ] && transset-df --id "$WINDOWID" >/dev/null
