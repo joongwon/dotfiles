@@ -14,12 +14,15 @@ set backspace=indent,eol,start
 set termguicolors
 set relativenumber
 set autoread
+set mouse=a
 
 digraph ll  8467 " ℓ
 digraph #>  8614 " ↦
 digraph =v  8659 " ⇓
 digraph /E  8708 " ∄
+digraph [_  8849 " ⊑
 digraph \-  8866 " ⊢
+digraph \=  8872 " ⊨
 digraph </ 10216 " ⟨
 digraph /> 10217 " ⟩
 
