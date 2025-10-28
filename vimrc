@@ -24,6 +24,35 @@ digraph \-  8866 " ⊢
 digraph </ 10216 " ⟨
 digraph /> 10217 " ⟩
 
+digraph AA 120120 " 𝔸
+digraph BB 120121 " 𝔹
+digraph CC   8468 " ℂ
+digraph DD 120123 " 𝔻
+digraph EE 120124 " 𝔼
+digraph FF 120125 " 𝔽
+digraph GG 120126 " 𝔾
+digraph HH   8469 " ℍ
+digraph II 120128 " 𝕀
+digraph JJ 120129 " 𝕁
+digraph KK 120130 " 𝕂
+digraph LL 120131 " 𝕃
+digraph MM 120132 " 𝕄
+digraph NN   8465 " ℕ
+digraph OO 120134 " 𝕆
+digraph PP   8473 " ℙ
+digraph QQ   8474 " ℚ
+digraph RR   8477 " ℝ
+digraph SS 120138 " 𝕊
+digraph TT 120139 " 𝕋
+digraph UU 120140 " 𝕌
+digraph VV 120141 " 𝕍
+digraph WW 120142 " 𝕎
+digraph XX 120143 " 𝕏
+digraph YY 120144 " 𝕐
+digraph ZZ   8484 " ℤ
+
+
+
 let &t_SI = "\<Esc>[6 q"
 let &t_SR = "\<Esc>[4 q"
 let &t_EI = "\<Esc>[2 q"
