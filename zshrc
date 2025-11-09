@@ -1,9 +1,5 @@
 source ~/.profile
-bindkey -v '^H' backward-delete-char
-alias ls='ls --color=auto'
 alias grep='grep --color=auto'
-
-export PROMPT='%F{120}%n@%m:%F{219}%~ %f%# ';
 
 # The following lines were added by compinstall
 # zstyle :compinstall filename '/home/jwahn/.zshrc'
@@ -18,6 +14,8 @@ HISTFILE=~/.histfile
 HISTSIZE=1000
 SAVEHIST=1000
 bindkey -v
+bindkey -v '^H' backward-delete-char
+bindkey -v '^?' backward-delete-char
 # End of lines configured by zsh-newuser-install
 
 # BEGIN opam configuration
@@ -31,3 +29,18 @@ bindkey -v
 command -v direnv >/dev/null 2>&1 && eval "$(direnv hook zsh)"
 
 [ -n "$XTERM_VERSION" ] && transset-df --id "$WINDOWID" >/dev/null
+
+if [[ "$(uname)" == "Darwin" ]]; then
+  function newls() {
+      /opt/homebrew/bin/gls --color=always -C $@ | iconv -f utf-8-mac -t utf-8
+  }
+  alias oldls='/bin/ls'
+  alias ls='newls'
+
+  export PROMPT='%F{120}%n@%m:%F{219}$(print -P %~ | iconv -f utf-8-mac -t utf-8) %f%# ';
+  setopt PROMPT_SUBST
+else
+  alias ls='ls --color=auto'
+  export PROMPT='%F{120}%n@%m:%F{219}%~ %f%# ';
+fi
+
