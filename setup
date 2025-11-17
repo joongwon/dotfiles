@@ -15,11 +15,6 @@ function link() {
   dir="$2"
   dest="$2/$3"
 
-  if [ -e "$src.$hostname" ]; then
-    cat "$src" "$src.$hostname" > "$src.local"
-    src="$src.local"
-  fi
-
   msg_linked="${GREEN}Linked $src to $dest${RESET}"
   msg_exists="${YELLOW}File $dest already exists, skipping${RESET}"
 
