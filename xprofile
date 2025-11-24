@@ -1,7 +1,4 @@
-xcompmgr -c &
-~/.fehbg &
 source ~/.profile
-nimf &
 export GTK_IM_MODULE=nimf
 export QT_IM_MODULE=nimf
 export QT4_IM_MODULE=nimf
@@ -9,3 +6,8 @@ export XMODIFIERS=@im=nimf
 export CLUTTER_IM_MODULE=nimf
 export ECORE_IMF_MODULE=nimf
 
+xrdb -merge ~/.Xresources
+
+xcompmgr -c &
+~/.fehbg &
+nimf &

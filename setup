@@ -23,8 +23,13 @@ function link() {
     if [ "$(readlink "$dest")" == "$src" ]; then
       # It's already a correct symlink
       echo "$msg_linked"
+    elif [ ! -e "$(readlink "$dest")" ]; then
+      # It's a dangling symlink
+      rm "$dest"
+      ln -s "$src" "$dest"
+      echo "$msg_linked"
     else
-      # It's a symlink but points to the wrong place
+      # It's a symlink but points to the another place
       echo "$msg_exists"
     fi
   elif [ -e "$dest" ]; then
