@@ -11,7 +11,12 @@ else
 fi
 
 function link() {
-  src="$PWD/$1"
+  # search for hostname-specific file
+  if [ -f "$PWD/${hostname}.$1" ]; then
+    src="$PWD/${hostname}.$1"
+  else
+    src="$PWD/$1"
+  fi
   dir="$2"
   dest="$2/$3"
 
