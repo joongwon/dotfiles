@@ -30,6 +30,7 @@ command -v direnv >/dev/null 2>&1 && eval "$(direnv hook zsh)"
 
 [ -n "$XTERM_VERSION" ] && transset-df --id "$WINDOWID" >/dev/null
 
+
 if [[ "$(uname)" == "Darwin" ]]; then
   function newls() {
       /opt/homebrew/bin/gls --color=always -C $@ | iconv -f utf-8-mac -t utf-8
@@ -44,3 +45,12 @@ else
   export PROMPT='%F{120}%n@%m:%F{219}%~ %f%# ';
 fi
 
+
+# pnpm
+# export PNPM_HOME="/home/joongwon/.local/share/pnpm"
+export PNPM_HOME="$HOME/.local/share/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end
