@@ -8,6 +8,6 @@ export ECORE_IMF_MODULE=nimf
 
 xrdb -merge ~/.Xresources
 
-xcompmgr -c &
-~/.fehbg &
+# xcompmgr -c &
+# ~/.fehbg &
 nimf &

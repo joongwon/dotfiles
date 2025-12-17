@@ -11,7 +11,12 @@ else
 fi
 
 function link() {
-  src="$PWD/$1"
+  # search for hostname-specific file
+  if [ -f "$PWD/${hostname}.$1" ]; then
+    src="$PWD/${hostname}.$1"
+  else
+    src="$PWD/$1"
+  fi
   dir="$2"
   dest="$2/$3"
 
@@ -59,3 +64,12 @@ link "xprofile"       "$HOME"                   ".xprofile"
 link "i3.conf"        "$HOME/.config/i3"        "config"
 link "i3status.conf"  "$HOME/.config/i3status"  "config"
 link "latexmkrc"      "$HOME/.config/latexmk"   "latexmkrc"
+link "alacritty.toml" "$HOME/.config/alacritty" "alacritty.toml"
+link "kime-icons/kime-hangul-black.png" "$HOME/.local/share/icons/hicolor/16x16/apps" "kime-hangul-black.png"
+link "kime-icons/kime-hangul-white.png" "$HOME/.local/share/icons/hicolor/16x16/apps" "kime-hangul-white.png"
+link "kime-icons/kime-latin-black.png" "$HOME/.local/share/icons/hicolor/16x16/apps" "kime-latin-black.png"
+link "kime-icons/kime-latin-white.png" "$HOME/.local/share/icons/hicolor/16x16/apps" "kime-latin-white.png"
+link "kime.yaml" "$HOME/.config/kime" "config.yaml"
+link "hyprland.conf" "$HOME/.config/hypr" "hyprland.conf"
+link "ironbar.toml" "$HOME/.config/ironbar" "config.toml"
+link "ironbar.css" "$HOME/.config/ironbar" "style.css"

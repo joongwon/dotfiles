@@ -103,10 +103,10 @@ if executable('ocamllsp')
         \   },
         \ })
 endif
-if executable('npx')
+if executable('typescript-language-server')
   au User lsp_setup call lsp#register_server({
         \ 'name': 'typescript-language-server',
-        \ 'cmd': {server_info->['npx', 'typescript-language-server', '--stdio']},
+        \ 'cmd': {server_info->['typescript-language-server', '--stdio']},
         \ 'allowlist': ['typescript', 'javascript', 'typescriptreact', 'javascriptreact'],
         \ })
 endif
@@ -146,6 +146,8 @@ let g:lsp_diagnostics_virtual_text_align = "after"
 
 hi link LspWarningHighlight WarningMsg
 hi link LspWarningText WarningMsg
+
+let g:lsp_use_native_client = 1
 
 digraph ?< 8828    " ≼
 digraph !< 8928    " ⋠

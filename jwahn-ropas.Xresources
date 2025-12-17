@@ -1,0 +1,8 @@
+XTerm*locale: true
+XTerm*utf8: true
+XTerm.termName: xterm-256color
+XTerm*Background: black
+XTerm*Foreground: white
+XTerm*faceName: JuliaMono
+XTerm*faceSize: 10
+Xft.dpi: 192

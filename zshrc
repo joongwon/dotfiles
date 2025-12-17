@@ -30,6 +30,7 @@ command -v direnv >/dev/null 2>&1 && eval "$(direnv hook zsh)"
 
 [ -n "$XTERM_VERSION" ] && transset-df --id "$WINDOWID" >/dev/null
 
+
 if [[ "$(uname)" == "Darwin" ]]; then
   function newls() {
       /opt/homebrew/bin/gls --color=always -C $@ | iconv -f utf-8-mac -t utf-8
