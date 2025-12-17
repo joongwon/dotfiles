@@ -44,3 +44,12 @@ else
   export PROMPT='%F{120}%n@%m:%F{219}%~ %f%# ';
 fi
 
+command -v fzf >/dev/null 2>&1 && source <(fzf --zsh)
+
+# pnpm
+export PNPM_HOME="$HOME/.local/share/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end

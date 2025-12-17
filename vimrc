@@ -66,7 +66,7 @@ imap <expr> <C-S-l> copilot#Accept()
 let g:copilot_no_tab_map = v:true
 
 colorscheme catppuccin_mocha
-
+hi Normal guibg=NONE ctermbg=NONE
 let g:airline_theme = 'catppuccin_mocha'
 if !exists('g:airline_symbols')
   let g:airline_symbols = {}
@@ -159,16 +159,19 @@ digraph !(  8713 " ∉
 digraph :=  8788 " ≔
 digraph [_  8849 " ⊑
 digraph ]U  8851 " ⊓
+digraph [U  8852 " ⊔
 digraph O+  8853 " ⊕
 digraph \-  8866 " ⊢
 digraph /-  8876 " ⊬
 digraph +T  8868 " ⊤
 digraph \=  8872 " ⊨
 digraph /=  8877 " ⊭
+digraph []  9633 " □
+digraph [>  9655 " ▷
 digraph [[ 10214
 digraph ]] 10215
-digraph <[ 10216 " ⟨
-digraph ]> 10217 " ⟩
+digraph <( 10216 " ⟨
+digraph )> 10217 " ⟩
 
 digraph AA 120120
 digraph BB 120121
@@ -224,56 +227,58 @@ digraph xx 120169
 digraph yy 120170
 digraph zz 120171
 
-digraph /A 120016 " 𝓐
-digraph /B 120017
-digraph /C 120018
-digraph /D 120019
-digraph /E 120020
-digraph /F 120021
-digraph /G 120022
-digraph /H 120023
-digraph /I 120024
-digraph /J 120025
-digraph /K 120026
-digraph /L 120027
-digraph /M 120028
-digraph /N 120029
-digraph /O 120030
-digraph /P 120031 " 𝓟
-digraph /Q 120032
-digraph /R 120033
-digraph /S 120034
-digraph /T 120035
-digraph /U 120036
-digraph /V 120037
-digraph /W 120038
-digraph /X 120039
-digraph /Y 120040
-digraph /Z 120041
+" === Mathematical Script CAPITAL A-Z ===
+digraph /A 119964   " 𝒜 MATHEMATICAL SCRIPT CAPITAL A (U+1D49C)
+digraph /B 8492     " ℬ SCRIPT CAPITAL B (U+212C)
+digraph /C 119966   " 𝒞 MATHEMATICAL SCRIPT CAPITAL C (U+1D49E)
+digraph /D 119967   " 𝒟 MATHEMATICAL SCRIPT CAPITAL D (U+1D49F)
+digraph /E 8496     " ℰ SCRIPT CAPITAL E (U+2130)
+digraph /F 8497     " ℱ SCRIPT CAPITAL F (U+2131)
+digraph /G 119970   " 𝒢 MATHEMATICAL SCRIPT CAPITAL G (U+1D4A2)
+digraph /H 8459     " ℋ SCRIPT CAPITAL H (U+210B)
+digraph /I 8464     " ℐ SCRIPT CAPITAL I (U+2110)
+digraph /J 119973   " 𝒥 MATHEMATICAL SCRIPT CAPITAL J (U+1D4A5)
+digraph /K 119974   " 𝒦 MATHEMATICAL SCRIPT CAPITAL K (U+1D4A6)
+digraph /L 8466     " ℒ SCRIPT CAPITAL L (U+2112)
+digraph /M 8499     " ℳ SCRIPT CAPITAL M (U+2133)
+digraph /N 119977   " 𝒩 MATHEMATICAL SCRIPT CAPITAL N (U+1D4A9)
+digraph /O 119978   " 𝒪 MATHEMATICAL SCRIPT CAPITAL O (U+1D4AA)
+digraph /P 119979   " 𝒫 MATHEMATICAL SCRIPT CAPITAL P (U+1D4AB)
+digraph /Q 119980   " 𝒬 MATHEMATICAL SCRIPT CAPITAL Q (U+1D4AC)
+digraph /R 8475     " ℛ SCRIPT CAPITAL R (U+211B)
+digraph /S 119982   " 𝒮 MATHEMATICAL SCRIPT CAPITAL S (U+1D4AE)
+digraph /T 119983   " 𝒯 MATHEMATICAL SCRIPT CAPITAL T (U+1D4AF)
+digraph /U 119984   " 𝒰 MATHEMATICAL SCRIPT CAPITAL U (U+1D4B0)
+digraph /V 119985   " 𝒱 MATHEMATICAL SCRIPT CAPITAL V (U+1D4B1)
+digraph /W 119986   " 𝒲 MATHEMATICAL SCRIPT CAPITAL W (U+1D4B2)
+digraph /X 119987   " 𝒳 MATHEMATICAL SCRIPT CAPITAL X (U+1D4B3)
+digraph /Y 119988   " 𝒴 MATHEMATICAL SCRIPT CAPITAL Y (U+1D4B4)
+digraph /Z 119989   " 𝒵 MATHEMATICAL SCRIPT CAPITAL Z (U+1D4B5)
 
-digraph /a 120042
-digraph /b 120043
-digraph /c 120044
-digraph /d 120045
-digraph /e 120046
-digraph /f 120047
-digraph /g 120048
-digraph /h 120049
-digraph /i 120050
-digraph /j 120051
-digraph /k 120052
-digraph /l 120053
-digraph /m 120054
-digraph /n 120055
-digraph /o 120056
-digraph /p 120057
-digraph /q 120058
-digraph /r 120059
-digraph /s 120060
-digraph /t 120061
-digraph /u 120062
-digraph /v 120063
-digraph /w 120064
-digraph /x 120065
-digraph /y 120066
-digraph /z 120067
+" === Mathematical Script SMALL a-z ===
+digraph /a 119990   " 𝒶 MATHEMATICAL SCRIPT SMALL A (U+1D4B6)
+digraph /b 119991   " 𝒷 MATHEMATICAL SCRIPT SMALL B (U+1D4B7)
+digraph /c 119992   " 𝒸 MATHEMATICAL SCRIPT SMALL C (U+1D4B8)
+digraph /d 119993   " 𝒹 MATHEMATICAL SCRIPT SMALL D (U+1D4B9)
+digraph /e 8495     " ℯ SCRIPT SMALL E (U+212F)
+digraph /f 119995   " 𝒻 MATHEMATICAL SCRIPT SMALL F (U+1D4BB)
+digraph /g 8458     " ℊ SCRIPT SMALL G (U+210A)
+digraph /h 119997   " 𝒽 MATHEMATICAL SCRIPT SMALL H (U+1D4BD)
+digraph /i 119998   " 𝒾 MATHEMATICAL SCRIPT SMALL I (U+1D4BE)
+digraph /j 119999   " 𝒿 MATHEMATICAL SCRIPT SMALL J (U+1D4BF)
+digraph /k 120000   " 𝓀 MATHEMATICAL SCRIPT SMALL K (U+1D4C0)
+digraph /l 120001   " 𝓁 MATHEMATICAL SCRIPT SMALL L (U+1D4C1)
+digraph /m 120002   " 𝓂 MATHEMATICAL SCRIPT SMALL M (U+1D4C2)
+digraph /n 120003   " 𝓃 MATHEMATICAL SCRIPT SMALL N (U+1D4C3)
+digraph /o 8500     " ℴ SCRIPT SMALL O (U+2134)
+digraph /p 120005   " 𝓅 MATHEMATICAL SCRIPT SMALL P (U+1D4C5)
+digraph /q 120006   " 𝓆 MATHEMATICAL SCRIPT SMALL Q (U+1D4C6)
+digraph /r 120007   " 𝓇 MATHEMATICAL SCRIPT SMALL R (U+1D4C7)
+digraph /s 120008   " 𝓈 MATHEMATICAL SCRIPT SMALL S (U+1D4C8)
+digraph /t 120009   " 𝓉 MATHEMATICAL SCRIPT SMALL T (U+1D4C9)
+digraph /u 120010   " 𝓊 MATHEMATICAL SCRIPT SMALL U (U+1D4CA)
+digraph /v 120011   " 𝓋 MATHEMATICAL SCRIPT SMALL V (U+1D4CB)
+digraph /w 120012   " 𝓌 MATHEMATICAL SCRIPT SMALL W (U+1D4CC)
+digraph /x 120013   " 𝓍 MATHEMATICAL SCRIPT SMALL X (U+1D4CD)
+digraph /y 120014   " 𝓎 MATHEMATICAL SCRIPT SMALL Y (U+1D4CE)
+digraph /z 120015   " 𝓏 MATHEMATICAL SCRIPT SMALL Z (U+1D4CF)
