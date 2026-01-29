@@ -160,6 +160,7 @@ digraph /E  8708 " ∄
 digraph !(  8713 " ∉
 digraph :=  8788 " ≔
 digraph [_  8849 " ⊑
+digraph _]  8850 " ⊒
 digraph ]U  8851 " ⊓
 digraph [U  8852 " ⊔
 digraph O+  8853 " ⊕
