@@ -34,7 +34,8 @@ Plug 'vim-python/python-syntax'
 Plug 'vim-airline/vim-airline'
 Plug 'preservim/nerdtree'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'catppuccin/vim', { 'as': 'catppuccin' }
+"Plug 'catppuccin/vim', { 'as': 'catppuccin' }
+Plug 'morhetz/gruvbox'
 Plug 'whonore/Coqtail'
 
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
@@ -45,6 +46,7 @@ Plug 'joongwon/vim-lsp', { 'branch': 'remove-codeaction-only' }
 Plug 'prabirshrestha/asyncomplete.vim'
 Plug 'prabirshrestha/asyncomplete-lsp.vim'
 
+Plug 'pangloss/vim-javascript'  " dependency plugin
 Plug 'maxmellon/vim-jsx-pretty'
 
 Plug 'github/copilot.vim'
@@ -65,9 +67,12 @@ imap <C-;> <Plug>(copilot-accept-line)
 imap <expr> <C-S-l> copilot#Accept()
 let g:copilot_no_tab_map = v:true
 
-colorscheme catppuccin_mocha
-hi Normal guibg=NONE ctermbg=NONE
-let g:airline_theme = 'catppuccin_mocha'
+colorscheme gruvbox
+"hi Normal guibg=NONE ctermbg=NONE
+let g:airline_theme = 'gruvbox'
+let g:gruvbox_contrast_light = 'hard'
+set background=light
+
 if !exists('g:airline_symbols')
   let g:airline_symbols = {}
 endif

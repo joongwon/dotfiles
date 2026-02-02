@@ -5,6 +5,9 @@ XTerm*Background: black
 XTerm*Foreground: white
 XTerm*faceName: JuliaMono
 XTerm*faceSize: 10
+XTerm*cursorBlink: true
+XTerm*cursorColor: #ffcc00
+XTerm*cursorTextColor: black
 Xft.dpi: 192
 XTerm*translations: #override \n\
   Ctrl Shift <Key>V: insert-selection(CLIPBOARD) \n\

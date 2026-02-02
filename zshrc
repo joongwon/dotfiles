@@ -28,7 +28,7 @@ bindkey -v '^?' backward-delete-char
 
 command -v direnv >/dev/null 2>&1 && eval "$(direnv hook zsh)"
 
-[ -n "$XTERM_VERSION" ] && transset-df --id "$WINDOWID" >/dev/null
+# [ -n "$XTERM_VERSION" ] && transset-df --id "$WINDOWID" >/dev/null
 
 
 if [[ "$(uname)" == "Darwin" ]]; then
