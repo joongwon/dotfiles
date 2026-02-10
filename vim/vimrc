@@ -1,5 +1,7 @@
 vim9script
 syntax on
+filetype plugin on
+filetype indent on
 set expandtab
 set tabstop=2
 set shiftwidth=2
@@ -19,94 +21,22 @@ set autoread
 set mouse=a
 set guifont=Julia\ Mono\ 10
 set background=light
+set foldmethod=indent
+set foldlevelstart=99
+set foldcolumn=3
 
 &t_SI = "\<Esc>[6 q"
 &t_SR = "\<Esc>[4 q"
 &t_EI = "\<Esc>[2 q"
+&t_Cs = "\e[4:3m"
+&t_Ce = "\e[4:0m"
 
 nnoremap <C-,> :tabe $MYVIMRC<CR>
-
-if !exists('g:airline_symbols')
-  g:airline_symbols = {}
-endif
-g:airline_symbols.maxlinenr = ''
-g:airline_symbols.linenr = 'ln:'
-g:airline_symbols.colnr = ' co:'
-
-nnoremap <Leader>ff :Files<CR>
-nnoremap <Leader>fg :GFiles<CR>
-nnoremap <Leader>fr :Rg<CR>
-
-colorscheme gruvbox
-g:airline_theme = 'gruvbox'
-g:gruvbox_contrast_light = 'hard'
-
-imap <M-;> <Plug>(copilot-accept-word)<C-O>:call popup_clear(1)<CR>
-imap <C-;> <Plug>(copilot-accept-line)
-imap <expr> <M-C-;> copilot#Accept()
-g:copilot_no_tab_map = v:true
-
-g:coqtail_coq_path = ''
-g:coqtail_noindent_comment = 1
-g:coqtail_indent_on_dot = 1
-
-var lspServers = [
-  {
-    name: 'typescript-language-server',
-    filetype: ['typescript', 'typescriptreact', 'javascript', 'javascriptreact'],
-    path: exepath('typescript-language-server'),
-    args: ['--stdio']
-  },
-  {
-    name: 'ocamllsp',
-    filetype: ['ocaml'],
-    path: exepath('ocamllsp')
-  },
-]
-g:LspAddServer(lspServers)
-
-# function! s:enable_fold() abort
-#   setlocal foldmethod=expr
-#   setlocal foldexpr=lsp#ui#vim#folding#foldexpr()
-#   setlocal foldtext=lsp#ui#vim#folding#foldtext()
-# endfunction
-# function! s:disable_fold() abort
-#   setlocal foldmethod=manual
-#   setlocal foldtext=foldtext()
-#   setlocal foldexpr=0
-# endfunction
-# command! LspEnableFold call s:enable_fold()
-# command! LspDisableFold call s:disable_fold()
-# function! s:on_lsp_buffer_enabled() abort
-#   setlocal signcolumn=yes
-#   setlocal tagfunc=lsp#tagfunc
-#   nmap <buffer> gd <plug>(lsp-definition)
-#   nmap <buffer> gi <plug>(lsp-implementation)
-#   nmap <buffer> <leader>rn <plug>(lsp-rename)
-#   nmap <buffer> [d <plug>(lsp-previous-diagnostic)
-#   nmap <buffer> ]d <plug>(lsp-next-diagnostic)
-#   nmap <buffer> K <plug>(lsp-hover)
-#   nmap <buffer> <leader>ca <plug>(lsp-code-action)
-#   imap <buffer> <c-space> <plug>(asyncomplete_force_refresh)
-#   nnoremap <buffer> <expr><c-j> lsp#scroll(+4)
-#   nnoremap <buffer> <expr><c-k> lsp#scroll(-4)
-# endfunction
-# augroup lsp_install
-#   au!
-#   autocmd User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
-# augroup END
-# let g:lsp_diagnostics_virtual_text_prefix = " ‣ "
-# let g:lsp_diagnostics_virtual_text_align = "after"
-# 
-# hi link LspWarningHighlight WarningMsg
-# hi link LspWarningText WarningMsg
-# 
-# "let g:lsp_use_native_client = 1
 
 digraph ?<  8828  # ≼
 digraph !<  8928  # ⋠
 digraph ~>  8605  # ↝
-digraph #>  8614  # ↦
+digraph \>  8614  # ↦
 digraph =^  8657  # ⇑
 digraph =v  8659  # ⇓
 digraph /E  8708  # ∄
