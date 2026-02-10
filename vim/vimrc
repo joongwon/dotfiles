@@ -1,5 +1,4 @@
 vim9script
-syntax on
 filetype plugin on
 filetype indent on
 set expandtab
@@ -20,7 +19,6 @@ set relativenumber
 set autoread
 set mouse=a
 set guifont=Julia\ Mono\ 10
-set background=light
 set foldmethod=indent
 set foldlevelstart=99
 set foldcolumn=3
@@ -31,7 +29,25 @@ set foldcolumn=3
 &t_Cs = "\e[4:3m"
 &t_Ce = "\e[4:0m"
 
-nnoremap <C-,> :tabe $MYVIMRC<CR>
+def OpenMyVimrcSmart()
+  var vimrc = expand('$MYVIMRC')
+
+  # 1) already open? jump to its window
+  var wid = bufwinid(bufnr(vimrc))
+  if wid != -1
+    win_gotoid(wid)
+    return
+  endif
+
+  # 2) not open: if current buffer modified -> open in new tab, else in current window
+  if &modified
+    execute('tabe ' .. fnameescape(vimrc))
+  else
+    execute('edit ' .. fnameescape(vimrc))
+  endif
+enddef
+
+noremap <silent> <C-,> <ScriptCmd>OpenMyVimrcSmart()<CR>
 
 digraph ?<  8828  # ≼
 digraph !<  8928  # ⋠
@@ -41,6 +57,7 @@ digraph =^  8657  # ⇑
 digraph =v  8659  # ⇓
 digraph /E  8708  # ∄
 digraph !(  8713  # ∉
+digraph !)  8716  # ∌
 digraph :=  8788  # ≔
 digraph [_  8849  # ⊑
 digraph _]  8850  # ⊒
@@ -54,8 +71,8 @@ digraph \=  8872  # ⊨
 digraph /=  8877  # ⊭
 digraph []  9633  # □
 digraph [>  9655  # ▷
-digraph [[ 10214
-digraph ]] 10215
+digraph [[ 10214  # ⟦
+digraph ]] 10215  # ⟧
 digraph <( 10216  # ⟨
 digraph )> 10217  # ⟩
 

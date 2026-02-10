@@ -42,7 +42,11 @@ if [[ "$(uname)" == "Darwin" ]]; then
   setopt PROMPT_SUBST
 else
   alias ls='ls --color=auto'
-  export PROMPT='%F{120}%n@%m:%F{219}%~ %f%# ';
+  if [[ "$TERM" == "xterm-kitty" ]]; then
+    export PROMPT='%F{#0000ff}%n@%m:%F{#ff0000}%~ %f%# ';
+  else
+    export PROMPT='%F{120}%n@%m:%F{219}%~ %f%# ';
+  fi
 fi
 
 command -v fzf >/dev/null 2>&1 && source <(fzf --zsh)
