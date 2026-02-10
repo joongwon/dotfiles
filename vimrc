@@ -45,34 +45,6 @@ imap <C-;> <Plug>(copilot-accept-line)
 imap <expr> <M-C-;> copilot#Accept()
 let g:copilot_no_tab_map = v:true
 
-"call plug#begin()
-"
-"Plug 'vim-python/python-syntax'
-"Plug 'vim-airline/vim-airline'
-"Plug 'preservim/nerdtree'
-"Plug 'vim-airline/vim-airline-themes'
-""Plug 'catppuccin/vim', { 'as': 'catppuccin' }
-"Plug 'morhetz/gruvbox'
-"Plug 'whonore/Coqtail'
-"
-"Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-"Plug 'junegunn/fzf.vim'
-"
-""Plug 'prabirshrestha/vim-lsp'
-"Plug 'joongwon/vim-lsp', { 'branch': 'remove-codeaction-only' }
-"Plug 'prabirshrestha/asyncomplete.vim'
-"Plug 'prabirshrestha/asyncomplete-lsp.vim'
-"
-"Plug 'pangloss/vim-javascript'  " dependency plugin
-"Plug 'maxmellon/vim-jsx-pretty'
-"
-"Plug 'github/copilot.vim'
-"Plug 'DanBradbury/copilot-chat.vim'
-"
-"Plug 'lervag/vimtex', { 'tag': 'v2.15' }
-"
-"call plug#end()
-"
 let g:coqtail_coq_path = ''
 let g:coqtail_noindent_comment = 1
 let g:coqtail_indent_on_dot = 1
@@ -149,7 +121,6 @@ hi link LspWarningText WarningMsg
 
 digraph ?< 8828    " ≼
 digraph !< 8928    " ⋠
-"digraph ll  8467 " ℓ
 digraph ~>  8605 " ↝
 digraph #>  8614 " ↦
 digraph =^  8657 " ⇑
