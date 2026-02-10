@@ -10,10 +10,10 @@ type = 'sys_info'
 format = [
     " {memory_used}/{memory_total}GB",
     "󰋊 {disk_used#G@/:.1}/{disk_total#G@/:.1}GB",
-    "→{disk_read:.1}MB/s",
-    "←{disk_write:.1}MB/s",
-    "↑{net_down:.1}Mbps",
-    "↓{net_up}Mbps",
+    "←{disk_read:.1}MB/s",
+    "→{disk_write:.1}MB/s",
+    "↓{net_down:.1}Mbps",
+    "↑{net_up}Mbps",
     " {load_average_1}",
 ]
 

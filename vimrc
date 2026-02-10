@@ -62,9 +62,9 @@ nnoremap <Leader>fl :Lines<CR>
 
 nnoremap <F5> :NERDTreeToggle<CR>
 
-imap <C-l> <Plug>(copilot-accept-word)<C-O>:call popup_clear(1)<CR>
+imap <M-;> <Plug>(copilot-accept-word)<C-O>:call popup_clear(1)<CR>
 imap <C-;> <Plug>(copilot-accept-line)
-imap <expr> <C-S-l> copilot#Accept()
+imap <expr> <M-S-;> copilot#Accept()
 let g:copilot_no_tab_map = v:true
 
 colorscheme gruvbox
@@ -152,7 +152,7 @@ let g:lsp_diagnostics_virtual_text_align = "after"
 hi link LspWarningHighlight WarningMsg
 hi link LspWarningText WarningMsg
 
-let g:lsp_use_native_client = 1
+"let g:lsp_use_native_client = 1
 
 digraph ?< 8828    " ≼
 digraph !< 8928    " ⋠

@@ -8,6 +8,7 @@ export ECORE_IMF_MODULE=nimf
 
 xrdb -merge ~/.Xresources
 
-# xcompmgr -c &
-~/.fehbg &
-nimf &
+if [ "$(cat /etc/hostname)" == "jwahn-ropas" ]; then
+  ~/.fehbg &
+  nimf &
+fi
