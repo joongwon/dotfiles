@@ -32,17 +32,15 @@ set foldcolumn=3
 def OpenMyVimrcSmart()
   var vimrc = expand('$MYVIMRC')
 
-  # 1) already open? jump to its window
   var wid = bufwinid(bufnr(vimrc))
   if wid != -1
+    # 1) already open? jump to its window
     win_gotoid(wid)
-    return
-  endif
-
-  # 2) not open: if current buffer modified -> open in new tab, else in current window
-  if &modified
+  else if &modified
+    # 2) not open, but current buffer modified? open in new tab
     execute('tabe ' .. fnameescape(vimrc))
   else
+    # 3) not open, current buffer unmodified? reuse current window
     execute('edit ' .. fnameescape(vimrc))
   endif
 enddef
