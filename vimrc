@@ -17,6 +17,7 @@ set relativenumber
 set autoread
 set mouse=a
 set guifont=Julia\ Mono\ 10
+set background=light
 
 let &t_SI = "\<Esc>[6 q"
 let &t_SR = "\<Esc>[4 q"
@@ -24,16 +25,25 @@ let &t_EI = "\<Esc>[2 q"
 
 nnoremap <C-,> :tabe $MYVIMRC<CR>
 
-packadd gruvbox
-colorscheme gruvbox
+if !exists('g:airline_symbols')
+  let g:airline_symbols = {}
+endif
+let g:airline_symbols.maxlinenr = ''
+let g:airline_symbols.linenr = 'ln:'
+let g:airline_symbols.colnr = ' co:'
 
-packadd copilot.vim
+nnoremap <Leader>ff :Files<CR>
+nnoremap <Leader>fg :GFiles<CR>
+nnoremap <Leader>fr :Rg<CR>
+
+colorscheme gruvbox
+let g:airline_theme = 'gruvbox'
+let g:gruvbox_contrast_light = 'hard'
+
 imap <M-;> <Plug>(copilot-accept-word)<C-O>:call popup_clear(1)<CR>
 imap <C-;> <Plug>(copilot-accept-line)
-imap <expr> <M-S-;> copilot#Accept()
+imap <expr> <M-C-;> copilot#Accept()
 let g:copilot_no_tab_map = v:true
-
-packadd Coqtail
 
 "call plug#begin()
 "
@@ -63,24 +73,6 @@ packadd Coqtail
 "
 "call plug#end()
 "
-nnoremap <Leader>ff :Files<CR>
-nnoremap <Leader>fg :GFiles<CR>
-nnoremap <Leader>fl :Lines<CR>
-
-nnoremap <F5> :NERDTreeToggle<CR>
-
-"hi Normal guibg=NONE ctermbg=NONE
-let g:airline_theme = 'gruvbox'
-let g:gruvbox_contrast_light = 'hard'
-set background=light
-
-if !exists('g:airline_symbols')
-  let g:airline_symbols = {}
-endif
-let g:airline_symbols.maxlinenr = ''
-let g:airline_symbols.linenr = 'ln:'
-let g:airline_symbols.colnr = ' co:'
-
 let g:coqtail_coq_path = ''
 let g:coqtail_noindent_comment = 1
 let g:coqtail_indent_on_dot = 1

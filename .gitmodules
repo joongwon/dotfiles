@@ -1,9 +1,12 @@
 [submodule "vim-plugins/opt/gruvbox"]
-	path = vim-plugins/opt/gruvbox
+	path = vim-plugins/start/gruvbox
 	url = https://github.com/morhetz/gruvbox.git
 [submodule "vim-plugins/opt/copilot.vim"]
-	path = vim-plugins/opt/copilot.vim
+	path = vim-plugins/start/copilot.vim
 	url = https://github.com/github/copilot.vim
 [submodule "vim-plugins/opt/Coqtail"]
-	path = vim-plugins/opt/Coqtail
+	path = vim-plugins/start/Coqtail
 	url = https://github.com/whonore/Coqtail
+[submodule "vim-plugins/opt/junegunn/fzf.vim"]
+	path = vim-plugins/opt/junegunn/fzf.vim
+	url = https://github.com/junegunn/fzf.vim
