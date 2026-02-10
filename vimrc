@@ -1,3 +1,4 @@
+syntax on
 set expandtab
 set tabstop=2
 set shiftwidth=2
@@ -23,51 +24,51 @@ let &t_EI = "\<Esc>[2 q"
 
 nnoremap <C-,> :tabe $MYVIMRC<CR>
 
-augroup filetype
-  au!
-  autocmd BufNewFile,BufRead *.sl setlocal filetype=scheme
-augroup END
+packadd gruvbox
+colorscheme gruvbox
 
-call plug#begin()
+packadd copilot.vim
+imap <M-;> <Plug>(copilot-accept-word)<C-O>:call popup_clear(1)<CR>
+imap <C-;> <Plug>(copilot-accept-line)
+imap <expr> <M-S-;> copilot#Accept()
+let g:copilot_no_tab_map = v:true
 
-Plug 'vim-python/python-syntax'
-Plug 'vim-airline/vim-airline'
-Plug 'preservim/nerdtree'
-Plug 'vim-airline/vim-airline-themes'
-"Plug 'catppuccin/vim', { 'as': 'catppuccin' }
-Plug 'morhetz/gruvbox'
-Plug 'whonore/Coqtail'
+packadd Coqtail
 
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'
-
-"Plug 'prabirshrestha/vim-lsp'
-Plug 'joongwon/vim-lsp', { 'branch': 'remove-codeaction-only' }
-Plug 'prabirshrestha/asyncomplete.vim'
-Plug 'prabirshrestha/asyncomplete-lsp.vim'
-
-Plug 'pangloss/vim-javascript'  " dependency plugin
-Plug 'maxmellon/vim-jsx-pretty'
-
-Plug 'github/copilot.vim'
-Plug 'DanBradbury/copilot-chat.vim'
-
-Plug 'lervag/vimtex', { 'tag': 'v2.15' }
-
-call plug#end()
-
+"call plug#begin()
+"
+"Plug 'vim-python/python-syntax'
+"Plug 'vim-airline/vim-airline'
+"Plug 'preservim/nerdtree'
+"Plug 'vim-airline/vim-airline-themes'
+""Plug 'catppuccin/vim', { 'as': 'catppuccin' }
+"Plug 'morhetz/gruvbox'
+"Plug 'whonore/Coqtail'
+"
+"Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+"Plug 'junegunn/fzf.vim'
+"
+""Plug 'prabirshrestha/vim-lsp'
+"Plug 'joongwon/vim-lsp', { 'branch': 'remove-codeaction-only' }
+"Plug 'prabirshrestha/asyncomplete.vim'
+"Plug 'prabirshrestha/asyncomplete-lsp.vim'
+"
+"Plug 'pangloss/vim-javascript'  " dependency plugin
+"Plug 'maxmellon/vim-jsx-pretty'
+"
+"Plug 'github/copilot.vim'
+"Plug 'DanBradbury/copilot-chat.vim'
+"
+"Plug 'lervag/vimtex', { 'tag': 'v2.15' }
+"
+"call plug#end()
+"
 nnoremap <Leader>ff :Files<CR>
 nnoremap <Leader>fg :GFiles<CR>
 nnoremap <Leader>fl :Lines<CR>
 
 nnoremap <F5> :NERDTreeToggle<CR>
 
-imap <M-;> <Plug>(copilot-accept-word)<C-O>:call popup_clear(1)<CR>
-imap <C-;> <Plug>(copilot-accept-line)
-imap <expr> <M-S-;> copilot#Accept()
-let g:copilot_no_tab_map = v:true
-
-colorscheme gruvbox
 "hi Normal guibg=NONE ctermbg=NONE
 let g:airline_theme = 'gruvbox'
 let g:gruvbox_contrast_light = 'hard'

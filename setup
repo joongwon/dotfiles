@@ -38,13 +38,16 @@ function link() {
       echo "$msg_exists"
     fi
   elif [ -e "$dest" ]; then
-    if cmp -s "$src" "$dest"; then
-      # The files are identical; replace with symlink
+    if [ -d "$src" ] && [ -d "$dest" ]; then
+      # Existing directory: skip and warn
+      echo "$msg_exists"
+    elif [ -f "$src" ] && [ -f "$dest" ] && cmp -s "$src" "$dest"; then
+      # Files are identical; replace with symlink
       rm "$dest"
       ln -s "$src" "$dest"
       echo "$msg_linked"
     else
-      # The file exists and is different; skip
+      # Destination exists and differs; skip
       echo "$msg_exists"
     fi
   else
@@ -75,3 +78,4 @@ link "ironbar.toml"   "$HOME/.config/ironbar"   "config.toml"
 link "ironbar.css"    "$HOME/.config/ironbar"   "style.css"
 link "tmux.conf"      "$HOME/.config/tmux"      "tmux.conf"
 link "here"           "$HOME/.local/bin"        "here"
+link "vim-plugins"    "$HOME/.vim/pack"         "default"
