@@ -58,7 +58,6 @@ function link() {
 }
 
 link "init.vim"       "$HOME/.config/nvim"      "init.vim"
-link "vimrc"          "$HOME/.vim"              "vimrc"
 link "zshrc"          "$HOME"                   ".zshrc"
 link "profile"        "$HOME"                   ".profile"
 link "Xresources"     "$HOME"                   ".Xresources"
@@ -78,4 +77,4 @@ link "ironbar.toml"   "$HOME/.config/ironbar"   "config.toml"
 link "ironbar.css"    "$HOME/.config/ironbar"   "style.css"
 link "tmux.conf"      "$HOME/.config/tmux"      "tmux.conf"
 link "here"           "$HOME/.local/bin"        "here"
-link "vim-plugins"    "$HOME/.vim/pack"         "default"
+link "vim"    	      "$HOME"                   ".vim"
