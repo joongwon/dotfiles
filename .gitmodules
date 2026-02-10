@@ -1,15 +1,18 @@
-[submodule "vim-plugins/start/gruvbox"]
+[submodule "copilot.vim"]
+	path = vim/pack/default/start/copilot.vim
+	url = https://github.com/github/copilot.vim.git
+[submodule "Coqtail"]
+	path = vim/pack/default/start/Coqtail
+	url = https://github.com/whonore/Coqtail.git
+[submodule "fzf.vim"]
+	path = vim/pack/default/start/fzf.vim
+	url = https://github.com/junegunn/fzf.vim.git
+[submodule "gruvbox"]
 	path = vim/pack/default/start/gruvbox
 	url = https://github.com/morhetz/gruvbox.git
-[submodule "vim-plugins/start/copilot.vim"]
-	path = vim/pack/default/start/copilot.vim
-	url = https://github.com/github/copilot.vim
-[submodule "vim-plugins/start/Coqtail"]
-	path = vim/pack/default/start/Coqtail
-	url = https://github.com/whonore/Coqtail
-[submodule "vim-plugins/start/vimtex"]
-	path = vim/pack/default/start/vimtex
-	url = https://github.com/lervag/vimtex
-[submodule "vim-plugins/start/lsp"]
+[submodule "lsp"]
 	path = vim/pack/default/start/lsp
-	url = https://github.com/yegappan/lsp
+	url = https://github.com/yegappan/lsp.git
+[submodule "vimtex"]
+	path = vim/pack/default/start/vimtex
+	url = https://github.com/lervag/vimtex.git
