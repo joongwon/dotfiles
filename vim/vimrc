@@ -36,7 +36,7 @@ def OpenMyVimrcSmart()
   if wid != -1
     # 1) already open? jump to its window
     win_gotoid(wid)
-  else if &modified
+  elseif &modified
     # 2) not open, but current buffer modified? open in new tab
     execute('tabe ' .. fnameescape(vimrc))
   else
