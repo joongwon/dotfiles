@@ -7,3 +7,5 @@ export PATH=/usr/local/texlive/2025/bin/universal-darwin:$PATH
 
 export EDITOR=vim
 export PATH=$HOME/.local/bin:$PATH
+
+export BAT_THEME=gruvbox-light

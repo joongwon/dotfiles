@@ -1,1 +1,1 @@
-setsid xterm >/dev/null 2>&1 &
+setsid kitty >/dev/null 2>&1 &

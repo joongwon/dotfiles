@@ -10,6 +10,8 @@ def OnLspAttached()
   setlocal keywordprg=:LspHover
   nnoremap <buffer> gd <Cmd>LspGotoDefinition<CR>
   nnoremap <buffer> gi <Cmd>LspGotoImpl<CR>
+  nnoremap <buffer> ]d <Cmd>LspDiag next<CR>
+  nnoremap <buffer> [d <Cmd>LspDiag prev<CR>
 enddef
 augroup LspSettings
   autocmd!
