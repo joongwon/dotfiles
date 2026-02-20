@@ -22,6 +22,11 @@ set guifont=Julia\ Mono\ 10
 set foldmethod=indent
 set foldlevelstart=99
 set foldcolumn=3
+set title
+set display=lastline
+set linebreak
+set breakindent
+set showbreak=+++>
 
 &t_SI = "\<Esc>[6 q"
 &t_SR = "\<Esc>[4 q"
@@ -51,12 +56,14 @@ digraph ?<  8828  # ≼
 digraph !<  8928  # ⋠
 digraph ~>  8605  # ↝
 digraph \>  8614  # ↦
+digraph @>  8620  # ↬
 digraph =^  8657  # ⇑
 digraph =v  8659  # ⇓
 digraph /E  8708  # ∄
 digraph !(  8713  # ∉
 digraph !)  8716  # ∌
 digraph :=  8788  # ≔
+digraph D=  8796  # ≜
 digraph [_  8849  # ⊑
 digraph _]  8850  # ⊒
 digraph ]U  8851  # ⊓
