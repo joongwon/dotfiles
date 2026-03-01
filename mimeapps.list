@@ -13,6 +13,9 @@ application/xhtml+xml=firefox.desktop
 application/x-extension-xhtml=firefox.desktop
 application/x-extension-xht=firefox.desktop
 application/pdf=org.pwmt.zathura.desktop
+x-scheme-handler/about=firefox.desktop
+x-scheme-handler/unknown=firefox.desktop
+image/png=imv.desktop
 
 [Added Associations]
 x-scheme-handler/mailto=userapp-Thunderbird-P9KOC3.desktop;
