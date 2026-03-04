@@ -42,6 +42,8 @@ if [[ "$(uname)" == "Darwin" ]]; then
   setopt PROMPT_SUBST
 else
   alias ls='ls --color=auto'
+  eval "$(dircolors -b ~/.dircolors)"
+
   if [[ "$TERM" == "xterm-kitty" ]]; then
     export PROMPT='%F{blue}%n@%m:%F{red}%~ %f%# ';
   else

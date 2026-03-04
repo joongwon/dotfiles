@@ -1,0 +1,1 @@
+" empty vimrc for placeholder

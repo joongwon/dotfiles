@@ -13,7 +13,7 @@ set wrap
 set hlsearch
 set incsearch
 set backspace=indent,eol,start
-set termguicolors
+"set termguicolors
 set relativenumber
 set autoread
 set mouse=a
@@ -21,12 +21,13 @@ set guifont=Julia\ Mono\ 10
 set foldmethod=indent
 set foldlevelstart=99
 set foldcolumn=3
+set fencs=utf-8,euc-kr
 
 let &t_SI = "\<Esc>[6 q"
-let &t_SR = "\<Esc>[4 q"
+"let &t_SR = "\<Esc>[4 q"
 let &t_EI = "\<Esc>[2 q"
-let &t_Cs = "\e[4:3m"
-let &t_Ce = "\e[4:0m"
+"let &t_Cs = "\e[4:3m"
+"let &t_Ce = "\e[4:0m"
 
 digraph ?<  8828  " ≼
 digraph !<  8928  " ⋠
