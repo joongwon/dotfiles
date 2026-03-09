@@ -38,17 +38,12 @@ if [[ "$(uname)" == "Darwin" ]]; then
   alias oldls='/bin/ls'
   alias ls='newls'
 
-  export PROMPT='%F{120}%n@%m:%F{219}$(print -P %~ | iconv -f utf-8-mac -t utf-8) %f%# ';
+  export PROMPT='%F{#0000ff}%n@%m:%F{#ff0000}$(print -P %~ | iconv -f utf-8-mac -t utf-8) %f%# ';
   setopt PROMPT_SUBST
 else
   alias ls='ls --color=auto'
   eval "$(dircolors -b ~/.dircolors)"
-
-  if [[ "$TERM" == "xterm-kitty" ]]; then
-    export PROMPT='%F{blue}%n@%m:%F{red}%~ %f%# ';
-  else
-    export PROMPT='%F{120}%n@%m:%F{219}%~ %f%# ';
-  fi
+  export PROMPT='%F{#0000ff}%n@%m:%F{#ff0000}%~ %f%# ';
 fi
 
 command -v fzf >/dev/null 2>&1 && source <(fzf --zsh)

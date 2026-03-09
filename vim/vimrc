@@ -27,6 +27,7 @@ set display=lastline
 set linebreak
 set breakindent
 set showbreak=+++>
+set rtp+=/opt/homebrew/opt/fzf
 
 &t_SI = "\<Esc>[6 q"
 &t_SR = "\<Esc>[4 q"
