@@ -1,0 +1,52 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+if [ $# -lt 1 ]; then
+  echo "usage: $0 <filename-pattern>"
+  exit 1
+fi
+
+query="$1"
+
+results=$(tlmgr search --file "$query")
+
+if [ -z "$results" ]; then
+  echo "No matches"
+  exit 1
+fi
+
+declare -A files
+packages=()
+current=""
+
+while IFS= read -r line; do
+  if [[ "$line" =~ ^([^:]+):$ ]]; then
+    current="${BASH_REMATCH[1]}"
+    packages+=("$current")
+    files["$current"]=""
+  else
+    files["$current"]+="$line"$'\n'
+  fi
+done <<< "$results"
+
+echo "Matches:"
+i=1
+for p in "${packages[@]}"; do
+  echo
+  echo "[$i] $p"
+  echo "${files[$p]}" | sed 's/^/    /'
+  ((i++))
+done
+
+echo
+read -rp "Select package number to install (0 to cancel): " choice
+
+if [[ "$choice" == "0" ]]; then
+  echo "Cancelled"
+  exit 0
+fi
+
+pkg="${packages[$((choice-1))]}"
+echo "Installing $pkg"
+
+sudo $(which tlmgr) install "$pkg"
