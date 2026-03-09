@@ -43,7 +43,7 @@ if [[ "$(uname)" == "Darwin" ]]; then
 else
   alias ls='ls --color=auto'
   eval "$(dircolors -b ~/.dircolors)"
-  export PROMPT='%F{#0000ff}%n@%m:%F{#ff0000}%~ %f%# ';
+  export PROMPT='%F{blue}%n@%m:%F{red}%~ %f%# ';
 fi
 
 command -v fzf >/dev/null 2>&1 && source <(fzf --zsh)
