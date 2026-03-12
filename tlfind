@@ -4,8 +4,54 @@ set -eu
 tlmgr_bin="$(command -v tlmgr || true)"
 [ -n "$tlmgr_bin" ] || { echo "tlmgr not found"; exit 1; }
 
+find_query_from_log() {
+  log="${1:-}"
+
+  if [ -z "$log" ]; then
+    # 현재 디렉터리에서 가장 최근 .log 하나 선택
+    log="$(ls -t ./*.log 2>/dev/null | head -n1 || true)"
+  fi
+
+  [ -n "$log" ] || return 1
+  [ -f "$log" ] || return 1
+
+  # 가장 흔한 패턴: ! LaTeX Error: File `foo.sty' not found.
+  q="$(
+    sed -n \
+      -e "s/.*LaTeX Error: File \`\\([^']*\\)'.*/\\1/p" \
+      -e "s/.*LaTeX Error: File '\([^']*\)'.*/\\1/p" \
+      "$log" \
+    | tail -n1
+  )"
+
+  if [ -z "${q:-}" ]; then
+    # 보조 패턴: ... not found
+    q="$(
+      sed -n \
+        -e "s/.*\([^[:space:]]\\{1,\\}\\.[A-Za-z][A-Za-z0-9]*\\) .*not found.*/\\1/p" \
+        "$log" \
+      | tail -n1
+    )"
+  fi
+
+  [ -n "${q:-}" ] || return 1
+  printf '%s\n' "$q"
+}
+
 q="${1:-}"
-[ -n "$q" ] || { echo "usage: $0 <file-pattern>"; exit 1; }
+
+if [ -z "$q" ]; then
+  q="$(find_query_from_log "${2:-}" || true)"
+fi
+
+[ -n "$q" ] || {
+  echo "usage: $0 <file-pattern>"
+  echo "   or: $0              # infer from latest .log in current directory"
+  echo "   or: $0 '' file.log  # infer from a specific log"
+  exit 1
+}
+
+echo "searching for: $q"
 
 tmp="$(mktemp)"
 trap 'rm -f "$tmp"' EXIT

@@ -55,3 +55,15 @@ case ":$PATH:" in
   *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
 # pnpm end
+
+# gruvbox colors for less
+export LESS_TERMCAP_md=$'\e[38;5;88m'
+export LESS_TERMCAP_us=$'\e[38;5;130m'
+export LESS_TERMCAP_so=$'\e[38;5;214m'
+export LESS_TERMCAP_me=$'\e[0m'
+export LESS_TERMCAP_ue=$'\e[0m'
+export LESS_TERMCAP_se=$'\e[0m'
+
+# zle completion suffix
+setopt AUTO_PARAM_SLASH
+unsetopt AUTO_REMOVE_SLASH
