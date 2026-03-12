@@ -15,9 +15,15 @@ echo "Hostname is $hostname"
 function link() {
   # search for hostname-specific file
   if [ -e "$PWD/${hostname}.$1" ]; then
+    # If a hostname-specific file exists, use it as the source
     src="$PWD/${hostname}.$1"
-  else
+  elif [ -e "$PWD/$1" ]; then
+    # If the regular file exists, use it as the source
     src="$PWD/$1"
+  else
+    # If neither file exists, print a warning and skip
+    echo "${YELLOW}Warning: Neither $PWD/${hostname}.$1 nor $PWD/$1 exists. Skipping.${RESET}"
+    return
   fi
   dir="$2"
   dest="$2/$3"
