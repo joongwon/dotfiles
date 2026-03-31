@@ -81,6 +81,7 @@ digraph [[ 10214  # ⟦
 digraph ]] 10215  # ⟧
 digraph <( 10216  # ⟨
 digraph )> 10217  # ⟩
+digraph ;= 10868  # ⩴
 
 digraph AA 120120
 digraph BB 120121
