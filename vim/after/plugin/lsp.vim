@@ -12,6 +12,7 @@ def OnLspAttached()
   nnoremap <buffer> gi <Cmd>LspGotoImpl<CR>
   nnoremap <buffer> ]d <Cmd>LspDiag next<CR>
   nnoremap <buffer> [d <Cmd>LspDiag prev<CR>
+  nnoremap <buffer> ca <Cmd>LspCodeAction<CR>
 enddef
 augroup LspSettings
   autocmd!
