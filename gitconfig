@@ -12,3 +12,5 @@
 	autoSetupRemote = true
 [merge]
 	tool = vimdiff
+[credential]
+	helper = libsecret

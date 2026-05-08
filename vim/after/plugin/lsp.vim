@@ -7,7 +7,7 @@ g:LspOptionsSet({
 
 def OnLspAttached()
   setlocal tagfunc=lsp#lsp#TagFunc
-  setlocal keywordprg=:LspHover
+  nnoremap <buffer> K <Cmd>LspHover<CR>
   nnoremap <buffer> gd <Cmd>LspGotoDefinition<CR>
   nnoremap <buffer> gi <Cmd>LspGotoImpl<CR>
   nnoremap <buffer> ]d <Cmd>LspDiag next<CR>
@@ -37,6 +37,15 @@ if ocamlPath !=# ''
     name: 'ocamllsp',
     filetype: ['ocaml'],
     path: ocamlPath
+  })
+endif
+
+var pylspPath = exepath('pylsp')
+if pylspPath !=# ''
+  add(lspServers, {
+    name: 'pylsp',
+    filetype: ['python'],
+    path: pylspPath
   })
 endif
 

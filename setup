@@ -65,7 +65,6 @@ function link() {
   fi
 }
 
-link "init.vim"       "$HOME/.config/nvim"      "init.vim"
 link "zshrc"          "$HOME"                   ".zshrc"
 link "profile"        "$HOME"                   ".profile"
 link "Xresources"     "$HOME"                   ".Xresources"
@@ -94,3 +93,6 @@ link "mimeapps.list"  "$HOME/.config"           "mimeapps.list"
 link "dircolors"      "$HOME"                   ".dircolors"
 link "zathurarc"      "$HOME/.config/zathura"   "zathurarc"
 link "tlfind"         "$HOME/.local/bin"        "tlfind"
+
+# override MimeType of chromium so that firefox can be the default browser for xdg-open
+link "chromium.desktop"  "$HOME/.local/share/applications" "chromium.desktop"

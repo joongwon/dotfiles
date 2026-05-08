@@ -57,6 +57,7 @@ digraph ?<  8828  # ≼
 digraph !<  8928  # ⋠
 digraph ~>  8605  # ↝
 digraph \>  8614  # ↦
+digraph 2>  8618  # ↪
 digraph @>  8620  # ↬
 digraph =^  8657  # ⇑
 digraph =v  8659  # ⇓
