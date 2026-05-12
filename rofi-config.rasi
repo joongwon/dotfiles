@@ -155,6 +155,7 @@ configuration {
 /*	me-select-entry: "MousePrimary";*/
 /*	me-accept-entry: "MouseDPrimary";*/
 /*	me-accept-custom: "Control+MouseDPrimary";*/
+  terminal: "kitty";
   timeout {
       action: "kb-cancel";
       delay:  0;

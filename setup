@@ -81,6 +81,7 @@ link "kime-icons/kime-latin-white.png"  "$HOME/.local/share/icons/hicolor/16x16/
 link "kime.yaml"      "$HOME/.config/kime"      "config.yaml"
 link "hyprland.conf"  "$HOME/.config/hypr"      "hyprland.conf"
 link "hyprland-extra.conf"  "$HOME/.config/hypr"  "hyprland-extra.conf"
+link "hypr"           "$HOME/.config"           "hypr"
 link "ironbar.toml"   "$HOME/.config/ironbar"   "config.toml"
 link "ironbar.css"    "$HOME/.config/ironbar"   "style.css"
 link "tmux.conf"      "$HOME/.config/tmux"      "tmux.conf"
@@ -93,6 +94,7 @@ link "mimeapps.list"  "$HOME/.config"           "mimeapps.list"
 link "dircolors"      "$HOME"                   ".dircolors"
 link "zathurarc"      "$HOME/.config/zathura"   "zathurarc"
 link "tlfind"         "$HOME/.local/bin"        "tlfind"
+link "nvim"           "$HOME/.config"           "nvim"
 
 # override MimeType of chromium so that firefox can be the default browser for xdg-open
 link "chromium.desktop"  "$HOME/.local/share/applications" "chromium.desktop"

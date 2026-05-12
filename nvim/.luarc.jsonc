@@ -1,0 +1,23 @@
+/* Lua configuration for ~/.config/nvim */
+{
+  "runtime": {
+    "version": "LuaJIT",
+    "path": [
+      "lua/?.lua",
+      "lua/?/init.lua"
+    ]
+  },
+  "diagnostics": {
+    "globals": ["vim"]
+  },
+  "workspace": {
+    "library": [
+      // Make the server aware of Neovim runtime files
+      "${env:VIMRUNTIME}/lua",
+      // Make the server aware of Neovim plugins
+      "${env:HOME}/.local/share/nvim/site/pack/core/opt/blink.cmp/lua",
+      "${env:HOME}/.local/share/nvim/site/pack/core/opt/blink.lib/lua",
+      "${env:HOME}/.local/share/nvim/site/pack/core/opt/fzf-lua/lua"
+    ]
+  }
+}
