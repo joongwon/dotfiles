@@ -7,11 +7,21 @@ vim.pack.add{
   'https://github.com/nvim-treesitter/nvim-treesitter',
 }
 
+vim.keymap.set('i', '<C-M-;>', 'copilot#Accept("")', {
+  expr = true, replace_keycodes = false,
+  desc = 'Accept Copilot suggestion'
+})
+vim.keymap.set('i', '<M-;>', '<plug>(copilot-accept-word)', {
+  desc = 'Accept Copilot suggestion word by word'
+})
+vim.keymap.set('i', '<C-;>', '<plug>(copilot-accept-line)', {
+  desc = 'Accept Copilot suggestion line by line'
+})
+vim.g.copilot_no_tab_map = true
+
 -- install: sudo pacman -S tree-sitter-cli
 local ts = require 'nvim-treesitter'
-ts.setup{
-  install_dir = vim.fn.stdpath('data') .. '/site',
-}
+ts.setup{}
 local ts_filetypes = {
   'python',
   'lua',
@@ -87,20 +97,11 @@ vim.keymap.set('n', '<leader>ff', fzf.files, { desc = 'Find files' })
 vim.keymap.set('n', '<leader>fg', fzf.live_grep, { desc = 'Live grep' })
 vim.keymap.set('n', '<leader>fb', fzf.buffers, { desc = 'List buffers' })
 vim.keymap.set('n', '<leader>fc', function ()
-  fzf.files{ cwd = '~/.config', }
-end, { desc = 'Find config files' })
-vim.keymap.set('n', '<leader>fd', function ()
   fzf.files{
-    -- only show shallow directories in the desktop
-    raw_cmd = "find ~/Desktop -maxdepth 1 -type d",
-    actions = {
-      ['enter'] = function(selected)
-        local path = selected[1]
-        vim.api.nvim_set_current_dir(path)
-      end,
-    },
+    cwd = '~/.config',
+    follow = true,
   }
-end, { desc = 'Find Projects in Desktop' })
+end, { desc = 'Find config files' })
 
 
 vim.diagnostic.config{
