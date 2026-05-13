@@ -5,7 +5,10 @@ vim.pack.add{
   'https://github.com/saghen/blink.cmp',
   'https://github.com/stevearc/oil.nvim',
   'https://github.com/nvim-treesitter/nvim-treesitter',
+  'https://github.com/lervag/vimtex',
 }
+
+vim.g.vimtex_view_method = "zathura"
 
 vim.keymap.set('i', '<C-M-;>', 'copilot#Accept("")', {
   expr = true, replace_keycodes = false,
