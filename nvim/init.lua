@@ -29,6 +29,7 @@ local ts_filetypes = {
   'python',
   'lua',
   'vim',
+  'ocaml',
 }
 ts.install(ts_filetypes)
 vim.api.nvim_create_autocmd('FileType', {
