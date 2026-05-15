@@ -19,6 +19,11 @@ packages=(
   common
 )
 
+platform=$(uname -s)
+if [ -d "$platform" ]; then
+  packages+=("$platform")
+fi
+
 machine_package="machine-$hostname"
 if [ -d "$machine_package" ]; then
   packages+=("$machine_package")

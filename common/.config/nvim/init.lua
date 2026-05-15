@@ -73,7 +73,7 @@ vim.api.nvim_create_autocmd("FileType", {
 require("oil").setup({})
 
 local cmp = require("blink.cmp")
-cmp.build():wait(60000)
+--cmp.build():wait(60000)
 cmp.setup({
   completion = {
     documentation = {
