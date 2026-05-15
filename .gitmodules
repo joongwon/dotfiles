@@ -1,24 +1,24 @@
 [submodule "copilot.vim"]
-	path = vim/pack/default/start/copilot.vim
+	path = vim/.vim/pack/default/start/copilot.vim
 	url = https://github.com/github/copilot.vim.git
 [submodule "Coqtail"]
-	path = vim/pack/default/start/Coqtail
+	path = vim/.vim/pack/default/start/Coqtail
 	url = https://github.com/whonore/Coqtail.git
 [submodule "fzf.vim"]
-	path = vim/pack/default/start/fzf.vim
+	path = vim/.vim/pack/default/start/fzf.vim
 	url = https://github.com/junegunn/fzf.vim.git
 [submodule "gruvbox"]
-	path = vim/pack/default/start/gruvbox
+	path = vim/.vim/pack/default/start/gruvbox
 	url = https://github.com/morhetz/gruvbox.git
 [submodule "lsp"]
-	path = vim/pack/default/start/lsp
+	path = vim/.vim/pack/default/start/lsp
 	url = https://github.com/yegappan/lsp.git
 [submodule "vimtex"]
-	path = vim/pack/default/start/vimtex
+	path = vim/.vim/pack/default/start/vimtex
 	url = https://github.com/lervag/vimtex.git
-[submodule "vim/pack/default/start/vim-airline-themes"]
-	path = vim/pack/default/start/vim-airline-themes
+[submodule "vim-airline-themes"]
+	path = vim/.vim/pack/default/start/vim-airline-themes
 	url = https://github.com/vim-airline/vim-airline-themes.git
-[submodule "vim/pack/default/start/vim-airline"]
-	path = vim/pack/default/start/vim-airline
+[submodule "vim-airline"]
+	path = vim/.vim/pack/default/start/vim-airline
 	url = https://github.com/vim-airline/vim-airline.git

@@ -1,8 +1,13 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
-GREEN=$'\033[0;32m'
-YELLOW=$'\033[0;33m'
-RESET=$'\033[0m'
+set -euo pipefail
+
+repo_root=$(cd -- "$(dirname -- "$0")" && pwd)
+
+if ! command -v stow >/dev/null 2>&1; then
+  echo "error: GNU Stow is required but not installed" >&2
+  exit 1
+fi
 
 if [ -f /etc/hostname ]; then
   hostname=$(cat /etc/hostname)
@@ -10,91 +15,49 @@ else
   hostname=$(hostname)
 fi
 
-echo "Hostname is $hostname"
+packages=(
+  sh
+  git
+  x11
+  gui
+  neovim
+  classic-vim
+)
 
-function link() {
-  # search for hostname-specific file
-  if [ -e "$PWD/${hostname}.$1" ]; then
-    # If a hostname-specific file exists, use it as the source
-    src="$PWD/${hostname}.$1"
-  elif [ -e "$PWD/$1" ]; then
-    # If the regular file exists, use it as the source
-    src="$PWD/$1"
-  else
-    # If neither file exists, print a warning and skip
-    echo "${YELLOW}Warning: Neither $PWD/${hostname}.$1 nor $PWD/$1 exists. Skipping.${RESET}"
-    return
-  fi
-  dir="$2"
-  dest="$2/$3"
+case "$hostname" in
+  jwahn-ropas)
+    packages+=(machine-jwahn-ropas)
+    ;;
+  freleefty-home)
+    packages+=(machine-freleefty-home)
+    ;;
+  *)
+    echo "warning: no machine-specific stow package configured for $hostname" >&2
+    ;;
+esac
 
-  msg_linked="${GREEN}Linked $src to $dest${RESET}"
-  msg_exists="${YELLOW}File $dest already exists, skipping${RESET}"
+cleanup_legacy_links() {
+  local package relpath target current
 
-  mkdir -p "$dir"
-  if [ -L "$dest" ]; then
-    if [ "$(readlink "$dest")" == "$src" ]; then
-      # It's already a correct symlink
-      echo "$msg_linked"
-    elif [ ! -e "$(readlink "$dest")" ]; then
-      # It's a dangling symlink
-      rm "$dest"
-      ln -s "$src" "$dest"
-      echo "$msg_linked"
-    else
-      # It's a symlink but points to the another place
-      echo "$msg_exists"
-    fi
-  elif [ -e "$dest" ]; then
-    if [ -d "$src" ] && [ -d "$dest" ]; then
-      # Existing directory: skip and warn
-      echo "$msg_exists"
-    elif [ -f "$src" ] && [ -f "$dest" ] && cmp -s "$src" "$dest"; then
-      # Files are identical; replace with symlink
-      rm "$dest"
-      ln -s "$src" "$dest"
-      echo "$msg_linked"
-    else
-      # Destination exists and differs; skip
-      echo "$msg_exists"
-    fi
-  else
-    # It doesn't exist; create the symlink
-    ln -s "$src" "$dest"
-    echo "$msg_linked"
-  fi
+  for package in "${packages[@]}"; do
+    while IFS= read -r relpath; do
+      target="$HOME/$relpath"
+      if [ ! -L "$target" ]; then
+        continue
+      fi
+
+      current=$(readlink "$target")
+      case "$current" in
+        "$repo_root"/*)
+          echo "Removing legacy link $target -> $current"
+          rm "$target"
+          ;;
+      esac
+    done < <(cd "$package" && find . -mindepth 1 | sed 's#^\./##')
+  done
 }
 
-link "zshrc"          "$HOME"                   ".zshrc"
-link "profile"        "$HOME"                   ".profile"
-link "Xresources"     "$HOME"                   ".Xresources"
-link "gitconfig"      "$HOME"                   ".gitconfig"
-link "xprofile"       "$HOME"                   ".xprofile"
-link "i3.conf"        "$HOME/.config/i3"        "config"
-link "i3status.conf"  "$HOME/.config/i3status"  "config"
-link "latexmkrc"      "$HOME/.config/latexmk"   "latexmkrc"
-link "alacritty.toml" "$HOME/.config/alacritty" "alacritty.toml"
-link "kime-icons/kime-hangul-black.png" "$HOME/.local/share/icons/hicolor/16x16/apps" "kime-hangul-black.png"
-link "kime-icons/kime-hangul-white.png" "$HOME/.local/share/icons/hicolor/16x16/apps" "kime-hangul-white.png"
-link "kime-icons/kime-latin-black.png"  "$HOME/.local/share/icons/hicolor/16x16/apps" "kime-latin-black.png"
-link "kime-icons/kime-latin-white.png"  "$HOME/.local/share/icons/hicolor/16x16/apps" "kime-latin-white.png"
-link "kime.yaml"      "$HOME/.config/kime"      "config.yaml"
-link "hyprland.conf"  "$HOME/.config/hypr"      "hyprland.conf"
-link "hyprland-extra.conf"  "$HOME/.config/hypr"  "hyprland-extra.conf"
-link "hypr"           "$HOME/.config"           "hypr"
-link "ironbar.toml"   "$HOME/.config/ironbar"   "config.toml"
-link "ironbar.css"    "$HOME/.config/ironbar"   "style.css"
-link "tmux.conf"      "$HOME/.config/tmux"      "tmux.conf"
-link "here"           "$HOME/.local/bin"        "here"
-link "vimrc"          "$HOME"                   ".vimrc"
-link "vim"            "$HOME"                   ".vim"
-link "kitty"          "$HOME/.config"           "kitty"
-link "rofi-config.rasi" "$HOME/.config/rofi"    "config.rasi"
-link "mimeapps.list"  "$HOME/.config"           "mimeapps.list"
-link "dircolors"      "$HOME"                   ".dircolors"
-link "zathurarc"      "$HOME/.config/zathura"   "zathurarc"
-link "tlfind"         "$HOME/.local/bin"        "tlfind"
-link "nvim"           "$HOME/.config"           "nvim"
+cleanup_legacy_links
 
-# override MimeType of chromium so that firefox can be the default browser for xdg-open
-link "chromium.desktop"  "$HOME/.local/share/applications" "chromium.desktop"
+echo "Stowing packages for $hostname: ${packages[*]}"
+stow -Rv -t "$HOME" "${packages[@]}"
