@@ -4,14 +4,8 @@ This repo now uses GNU Stow.
 
 ## Packages
 
-- `sh`: shell files like `.zshrc`, `.profile`, and `.dircolors`
-- `git`: `.gitconfig`
-- `x11`: `.xprofile`
-- `gui`: shared GUI and desktop config under `.config` and `.local`
-- `neovim`: `~/.config/nvim`
-- `classic-vim`: `~/.vim` and `~/.vimrc`
-- `machine-jwahn-ropas`: `jwahn-ropas`-specific `Xresources` and Hyprland config
-- `machine-freleefty-home`: `freleefty-home`-specific `Xresources`
+- `common`: shared shell, editor, X11, and desktop config
+- `machine-<hostname>`: optional per-host overrides, used automatically when a matching directory exists
 
 `extras/` holds repo files that are not currently stowed.
 
@@ -26,6 +20,6 @@ Install everything for the current machine:
 Or stow packages manually:
 
 ```bash
-stow -Rv -t "$HOME" sh git x11 gui neovim classic-vim
-stow -Rv -t "$HOME" machine-jwahn-ropas
+stow -Rv -t "$HOME" common
+stow -Rv -t "$HOME" machine-"$(hostname)"
 ```

@@ -16,25 +16,13 @@ else
 fi
 
 packages=(
-  sh
-  git
-  x11
-  gui
-  neovim
-  classic-vim
+  common
 )
 
-case "$hostname" in
-  jwahn-ropas)
-    packages+=(machine-jwahn-ropas)
-    ;;
-  freleefty-home)
-    packages+=(machine-freleefty-home)
-    ;;
-  *)
-    echo "warning: no machine-specific stow package configured for $hostname" >&2
-    ;;
-esac
+machine_package="machine-$hostname"
+if [ -d "$machine_package" ]; then
+  packages+=("$machine_package")
+fi
 
 cleanup_legacy_links() {
   local package relpath target current
