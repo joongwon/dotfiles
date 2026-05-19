@@ -17,7 +17,7 @@
       "src": "https://github.com/hrsh7th/cmp-nvim-lsp"
     },
     "conform.nvim": {
-      "rev": "18aeab3d63d350dcf44d64c462cc489a3412af40",
+      "rev": "dca1a190aa85f9065979ef35802fb77131911106",
       "src": "https://github.com/stevearc/conform.nvim"
     },
     "copilot.vim": {
