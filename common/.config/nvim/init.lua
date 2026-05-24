@@ -49,6 +49,12 @@ local function safesetup(f)
 end
 
 safesetup(function()
+  require("aerial").setup {
+    backends = { "lsp", "treesitter" },
+  }
+end)
+
+safesetup(function()
   require("overleaf_autosync").setup {
     whitelist_file = ".overleafwl",
     auto_push = true,
@@ -155,7 +161,11 @@ safesetup(function()
 end)
 
 safesetup(function()
-  require("oil").setup {}
+  require("oil").setup {
+    view_options = {
+      show_hidden = true,
+    },
+  }
 end)
 
 ---@type table<string, vim.lsp.Config>
@@ -173,7 +183,7 @@ local lspcfgs = {
     },
   },
   ocamllsp = {
-    cmd = { "opam", "exec", "--", "ocamllsp" },
+    cmd = { "ocamllsp" },
     filetypes = { "ocaml" },
     root_markers = { { "dune-project" } },
   },
@@ -223,3 +233,4 @@ vim.keymap.set("n", "gb", "<cmd>bnext<cr>", { desc = "Next buffer" })
 vim.keymap.set("n", "gB", "<cmd>bprevious<cr>", { desc = "Previous buffer" })
 vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, { desc = "Rename symbol" })
 vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, { desc = "Code action" })
+vim.keymap.set("n", "<leader>a", "<cmd>AerialToggle!<cr>", { desc = "Toggle code outline" })
