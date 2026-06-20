@@ -1,24 +1,18 @@
-hl.monitor({
+hl.monitor {
   output = "DVI-D-1",
   mode = "1920x1080",
   position = "0x0",
   scale = 1,
   transform = 3,
-})
+}
 
-hl.monitor({
+hl.monitor {
   output = "HDMI-A-1",
   mode = "1920x1080",
   position = "1080x570",
   scale = 1,
-})
+}
 
-hl.env({
-  key = "LIBVA_DRIVER_NAME",
-  value = "nvidia",
-})
+hl.env("LIBVA_DRIVER_NAME", "nvidia")
 
-hl.env({
-  key = "__GLX_VENDOR_LIBRARY_NAME",
-  value = "nvidia",
-})
+hl.env("__GLX_VENDOR_LIBRARY_NAME", "nvidia")

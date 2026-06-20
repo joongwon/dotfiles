@@ -150,6 +150,9 @@ safesetup(function()
     "ocaml",
     "javascript",
     "typescript",
+  "css",
+  "html",
+  "json",
   }
   ts.install(ts_filetypes)
   vim.api.nvim_create_autocmd("FileType", {
@@ -192,9 +195,9 @@ local lspcfgs = {
     filetypes = { "python" },
     root_markers = { { "pyproject.toml" }, { "setup.py" }, { "pyrightconfig.json" } },
   },
-  ts_ls = {
+  tsserver = {
     cmd = { "typescript-language-server", "--stdio" },
-    filetypes = { "javascript", "typescript" },
+    filetypes = { "javascript", "typescript", "javascriptreact", "typescriptreact" },
     root_markers = { { "package.json" } },
   },
 }
