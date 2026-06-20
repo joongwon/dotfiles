@@ -1,0 +1,16 @@
+[init]
+	defaultBranch = main
+[user]
+	email = freleefty@gmail.com
+	name = Joongwon Ahn
+[core]
+	editor = vim
+	autocrlf = input
+	whitespace = cr-at-eol
+	quotepath = false
+[push]
+	autoSetupRemote = true
+[merge]
+	tool = vimdiff
+[credential]
+	helper = osxkeychain

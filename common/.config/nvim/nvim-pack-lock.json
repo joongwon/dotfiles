@@ -1,5 +1,9 @@
 {
   "plugins": {
+    "aerial.nvim": {
+      "rev": "43dd88ad4024b1945906887521057c73d3b0d84e",
+      "src": "https://github.com/stevearc/aerial.nvim"
+    },
     "blink.cmp": {
       "rev": "d3874d2a13aa19b095bdd10d37a82a8f0aa7cad3",
       "src": "https://github.com/saghen/blink.cmp"
@@ -43,6 +47,10 @@
     "oil.nvim": {
       "rev": "0fcc83805ad11cf714a949c98c605ed717e0b83e",
       "src": "https://github.com/stevearc/oil.nvim"
+    },
+    "overleaf-autosync.nvim": {
+      "rev": "188810883e888174398b70c7bc243ffc04a383c0",
+      "src": "https://github.com/joongwon/overleaf-autosync.nvim"
     },
     "vimtex": {
       "rev": "182ad387e3f3107699483606c9a2b6648f8437b2",

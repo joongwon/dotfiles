@@ -60,6 +60,7 @@ trap 'rm -f "$tmp"' EXIT
 
 pkgs=()
 i=1
+default_n=""
 
 while IFS= read -r line; do
   if [[ "$line" == *: ]]; then
@@ -69,14 +70,31 @@ while IFS= read -r line; do
     i=$((i+1))
   else
     echo "    $line"
+
+    # tlmgr 결과의 파일 경로에서 basename을 뽑아 q와 정확히 일치하는지 확인.
+    # 예: texmf-dist/tex/latex/foo/foo.sty
+    file="${line##*/}"
+
+    if [ "$file" = "$q" ] && [ -z "$default_n" ]; then
+      default_n="${#pkgs[@]}"
+    fi
   fi
 done < "$tmp"
 
 count="${#pkgs[@]}"
 [ "$count" -gt 0 ] || { echo "no matches"; exit 1; }
 
-printf "select package [1-%s, 0=cancel]: " "$count"
+if [ -n "$default_n" ]; then
+  printf "select package [1-%s, 0=cancel] default=%s: " "$count" "$default_n"
+else
+  printf "select package [1-%s, 0=cancel]: " "$count"
+fi
+
 read -r n
+
+if [ -z "$n" ] && [ -n "$default_n" ]; then
+  n="$default_n"
+fi
 
 case "$n" in
   0) exit 0 ;;
