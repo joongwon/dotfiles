@@ -29,6 +29,8 @@ vim.opt.title = true
 
 vim.g.copilot_no_tab_map = true
 
+vim.g.vimtex_fold_enabled = 1
+vim.g.vimtex_fold_manual = 1
 if vim.fn.executable "zathura" == 1 then
   vim.g.vimtex_view_method = "zathura"
 elseif vim.fn.has "mac" == 1 then
