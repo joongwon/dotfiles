@@ -26,6 +26,7 @@ vim.opt.list = true
 vim.opt.listchars = "tab:→ ,eol:¬,nbsp:·,trail:•,extends:⟩,precedes:⟨"
 vim.opt.showbreak = "+++>"
 vim.opt.title = true
+vim.opt.foldcolumn = "1"
 
 vim.g.copilot_no_tab_map = true
 
@@ -152,9 +153,9 @@ safesetup(function()
     "ocaml",
     "javascript",
     "typescript",
-  "css",
-  "html",
-  "json",
+    "css",
+    "html",
+    "json",
   }
   ts.install(ts_filetypes)
   vim.api.nvim_create_autocmd("FileType", {
