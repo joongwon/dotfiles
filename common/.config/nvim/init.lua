@@ -1,6 +1,6 @@
 -- dependencies: tree-sitter-cli, lua-language-server, ocaml-lsp-server, basedpyright, stylua, ruff, ocamlformat, zathura
 local packspec = [[
-  copilot.vim
+  github/copilot.vim
   ibhagwan/fzf-lua
   stevearc/oil.nvim
   nvim-treesitter/nvim-treesitter
