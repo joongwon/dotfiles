@@ -240,3 +240,58 @@ vim.keymap.set("n", "gB", "<cmd>bprevious<cr>", { desc = "Previous buffer" })
 vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, { desc = "Rename symbol" })
 vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, { desc = "Code action" })
 vim.keymap.set("n", "<leader>a", "<cmd>AerialToggle!<cr>", { desc = "Toggle code outline" })
+
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "tex",
+  callback = function()
+    vim.keymap.set("n", "<leader>lo", function()
+      local tex = vim.api.nvim_get_current_win()
+      local qf, out_buf, tmp_out_win
+
+      -- 1. VimtexCompileOutput은 tex buffer/window에서 실행해야 함
+      vim.api.nvim_win_call(tex, function()
+        vim.cmd "VimtexCompileOutput"
+        tmp_out_win = vim.api.nvim_get_current_win()
+        out_buf = vim.api.nvim_win_get_buf(tmp_out_win)
+      end)
+
+      -- 2. quickfix window 찾기
+      for _, win in ipairs(vim.api.nvim_list_wins()) do
+        local buf = vim.api.nvim_win_get_buf(win)
+        if vim.bo[buf].buftype == "quickfix" then
+          qf = win
+          break
+        end
+      end
+
+      -- 3. quickfix가 없으면 아래에 열기
+      if qf and vim.api.nvim_win_is_valid(qf) then
+        vim.api.nvim_set_current_win(qf)
+      else
+        vim.api.nvim_set_current_win(tex)
+        vim.cmd "botright copen | resize 10"
+      end
+
+      -- 4. quickfix 오른쪽에 split 만들고 output buffer 배치
+      vim.cmd "rightbelow vertical new"
+      local final_out_win = vim.api.nvim_get_current_win()
+      vim.api.nvim_win_set_buf(final_out_win, out_buf)
+
+      -- 5. VimTeX가 임의 위치에 열어버린 임시 output 창 닫기
+      if
+        tmp_out_win
+        and tmp_out_win ~= tex
+        and tmp_out_win ~= final_out_win
+        and vim.api.nvim_win_is_valid(tmp_out_win)
+      then
+        vim.api.nvim_win_close(tmp_out_win, true)
+      end
+
+      -- 6. tex window로 복귀
+      pcall(vim.api.nvim_set_current_win, tex)
+    end, {
+      buffer = true,
+      desc = "Open VimTeX output beside quickfix",
+    })
+  end,
+})
