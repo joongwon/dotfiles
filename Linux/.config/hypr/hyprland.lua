@@ -2,9 +2,9 @@ require "extra"
 
 local home = os.getenv "HOME"
 local old_path = os.getenv "PATH"
-hl.env("GTK_IM_MODULE", "kime")
-hl.env("QT_IM_MODULE", "kime")
-hl.env("XMODIFIERS", "@im=kime")
+hl.env("GTK_IM_MODULE", "fcitx5")
+hl.env("QT_IM_MODULE", "fcitx5")
+hl.env("XMODIFIERS", "@im=fcitx5")
 hl.env("PATH", table.concat { home .. "/.local/bin", "/usr/local/texlive/2024/bin/x86_64-linux", old_path })
 
 hl.on("hyprland.start", function()
@@ -12,9 +12,9 @@ hl.on("hyprland.start", function()
   hl.exec_cmd "xrdb ~/.Xresources"
   hl.exec_cmd "awww-daemon &"
   hl.exec_cmd "~/.config/hypr/wallpaper-cycle.sh &"
-  hl.exec_cmd "kime"
+  hl.exec_cmd "fcitx5"
   hl.exec_cmd "thunderbird &"
-  hl.exec_cmd "discord &"
+  hl.exec_cmd "webcord &"
 end)
 
 hl.animation {
@@ -97,7 +97,7 @@ hl.window_rule {
 hl.window_rule {
   name = "discord-to-discord",
   match = {
-    class = [[^discord$]],
+    class = [[^webcord$]],
   },
   workspace = "name:discord",
 }
