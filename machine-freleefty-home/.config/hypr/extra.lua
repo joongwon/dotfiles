@@ -8,9 +8,9 @@ hl.monitor {
 
 hl.monitor {
   output = "HDMI-A-1",
-  mode = "1920x1080",
+  mode = "3840x2160",
   position = "1080x570",
-  scale = 1,
+  scale = 1.5,
 }
 
 hl.env("LIBVA_DRIVER_NAME", "nvidia")
