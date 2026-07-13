@@ -1,43 +1,44 @@
 * {
-  color: #cccccc;
-  font-family: "FiraCode Nerd Font", monospace;
+  font-family: "FiraCode Nerd Font";
 }
-
-#end .widget {
-  margin: 0 2px;
-}
-
-.sysinfo .item {
-}
-
-
-button, .background, .calendar {
-  background-color: rgba(26, 26, 26, 0.5);
-}
-
-button {
-  background-image: none;
+.background,
+button,
+modelbutton,
+calendar {
+  background: none;
   border: none;
   border-radius: 0;
-  box-shadow: none;
+  color: #cccccc;
 }
 
-button:hover,button:active{
-  background-color: rgba(50, 50, 50, 0.8);
+.sysinfo,
+.volume,
+.clock,
+.tray,
+contents,
+.workspaces .item {
+  font-family: "FiraCode Nerd Font";
+  background-color: rgba(50,50,50,0.8);
 }
-
-.workspaces .item.visible {
-  box-shadow: inset 0 -2px #ffffff;
+.sysinfo {
+  padding: 10px;
 }
-
 .workspaces .item.focused {
   box-shadow: inset 0 -2px #6699cc;
-  background-color: rgba(50, 50, 50, 0.8);
 }
-.workspaces .item.urgent {
-  background-color: #8f0a0a;
+.workspaces .item:hover,
+button:hover,
+modelbutton:hover {
+  background-color: rgba(26, 26, 26, 0.5);
 }
-
-.popup-clock .calendar-clock {
-  font-size: 2.0em;
+label {
+  background: none;
+}
+slider {
+  border-width: 0;
+  transform: scale(0.7);
+}
+radio,
+check {
+  color:#6699cc;
 }

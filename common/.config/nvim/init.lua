@@ -12,6 +12,7 @@ local packspec = [[
   akinsho/bufferline.nvim
   stevearc/aerial.nvim
   joongwon/overleaf-autosync.nvim
+  julian/lean.nvim
 ]]
 
 vim.opt.expandtab = true
@@ -29,6 +30,10 @@ vim.opt.title = true
 vim.opt.foldcolumn = "1"
 
 vim.g.copilot_no_tab_map = true
+
+vim.g.lean_config = {
+  mappings = true,
+}
 
 vim.g.vimtex_fold_enabled = 1
 vim.g.vimtex_fold_manual = 1

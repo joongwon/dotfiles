@@ -1,4 +1,4 @@
-require "extra"
+pcall(require, "extra")
 
 local home = os.getenv "HOME"
 local old_path = os.getenv "PATH"
