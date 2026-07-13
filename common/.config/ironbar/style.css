@@ -16,9 +16,11 @@ calendar {
 .clock,
 .tray,
 contents,
-.workspaces .item {
+.workspaces .item,
+arrow {
   font-family: "FiraCode Nerd Font";
   background-color: rgba(50,50,50,0.8);
+  border-radius: 0;
 }
 .sysinfo {
   padding: 10px;
