@@ -8,13 +8,7 @@ hl.env("XMODIFIERS", "@im=fcitx5")
 hl.env("PATH", table.concat { home .. "/.local/bin", "/usr/local/texlive/2024/bin/x86_64-linux", old_path })
 
 hl.on("hyprland.start", function()
-  hl.exec_cmd "ironbar &"
   hl.exec_cmd "xrdb ~/.Xresources"
-  hl.exec_cmd "awww-daemon &"
-  hl.exec_cmd "~/.config/hypr/wallpaper-cycle.sh &"
-  hl.exec_cmd "fcitx5"
-  hl.exec_cmd "thunderbird &"
-  hl.exec_cmd "webcord &"
 end)
 
 hl.animation {

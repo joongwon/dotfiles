@@ -1,0 +1,12 @@
+[Unit]
+Description=Wallpaper cycle
+PartOf=graphical-session.target
+Requires=awww-daemon.service
+After=awww-daemon.service
+
+[Service]
+ExecStart=%h/.config/hypr/wallpaper-cycle.sh
+Restart=on-failure
+
+[Install]
+WantedBy=graphical-session.target
