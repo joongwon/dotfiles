@@ -128,9 +128,8 @@ safesetup(function()
     lua = { "stylua" },
     python = { "ruff_format" },
     ocaml = { "ocamlformat" },
-    yaml = { "prettierd" },
   }
-  for _, ft in ipairs { "javascript", "typescript", "javascriptreact", "typescriptreact" } do
+  for _, ft in ipairs { "javascript", "typescript", "javascriptreact", "typescriptreact", "yaml", "css" } do
     formatters[ft] = { "prettierd" }
   end
   conform.setup {

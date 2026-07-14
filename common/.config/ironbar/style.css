@@ -1,6 +1,7 @@
 * {
   font-family: "FiraCode Nerd Font";
 }
+
 .background,
 button,
 modelbutton,
@@ -8,7 +9,7 @@ calendar {
   background: none;
   border: none;
   border-radius: 0;
-  color: #cccccc;
+  color: #ffffff;
 }
 
 .sysinfo,
@@ -19,28 +20,34 @@ contents,
 .workspaces .item,
 arrow {
   font-family: "FiraCode Nerd Font";
-  background-color: rgba(50,50,50,0.8);
+  background-color: rgba(26, 26, 26, 0.5);
   border-radius: 0;
 }
+
 .sysinfo {
   padding: 10px;
 }
+
 .workspaces .item.focused {
   box-shadow: inset 0 -2px #6699cc;
 }
+
 .workspaces .item:hover,
 button:hover,
 modelbutton:hover {
-  background-color: rgba(26, 26, 26, 0.5);
+  background-color: rgba(50, 50, 50, 0.8);
 }
+
 label {
   background: none;
 }
+
 slider {
   border-width: 0;
   transform: scale(0.7);
 }
+
 radio,
 check {
-  color:#6699cc;
+  color: #6699cc;
 }
