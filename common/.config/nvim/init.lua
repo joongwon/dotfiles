@@ -3,7 +3,6 @@ local packspec = [[
   github/copilot.vim
   ibhagwan/fzf-lua
   stevearc/oil.nvim
-  nvim-treesitter/nvim-treesitter
   lervag/vimtex
   stevearc/conform.nvim
   nvim-lualine/lualine.nvim
@@ -13,6 +12,8 @@ local packspec = [[
   stevearc/aerial.nvim
   joongwon/overleaf-autosync.nvim
   julian/lean.nvim
+  nvim-treesitter/nvim-treesitter
+  lewis6991/ts-install.nvim
 ]]
 
 vim.opt.expandtab = true
@@ -148,24 +149,45 @@ safesetup(function()
 end)
 
 safesetup(function()
-  local ts = require "nvim-treesitter"
-  ts.setup {}
   local ts_filetypes = {
-    "python",
     "lua",
     "vim",
+    "python",
     "ocaml",
     "javascript",
     "typescript",
     "css",
     "html",
     "json",
+    "lean",
   }
-  ts.install(ts_filetypes)
+
+  require("ts-install").setup {
+    install_dir = vim.fn.stdpath "data" .. "/ts-install",
+
+    ensure_install = ts_filetypes,
+
+    auto_install = true,
+    auto_update = true,
+
+    parsers = {
+      lean = {
+        install_info = {
+          url = "https://github.com/Julian/tree-sitter-lean",
+          branch = "main",
+        },
+      },
+    },
+  }
+
   vim.api.nvim_create_autocmd("FileType", {
     pattern = ts_filetypes,
-    callback = function()
-      pcall(vim.treesitter.start)
+    callback = function(ev)
+      pcall(vim.treesitter.start, ev.buf)
+
+      vim.wo.foldmethod = "expr"
+      vim.wo.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+      vim.wo.foldenable = false
     end,
   })
 end)
@@ -299,3 +321,12 @@ vim.api.nvim_create_autocmd("FileType", {
     })
   end,
 })
+
+-- digraphs
+local digraphs = {
+  ["[["] = 0x27E6,
+  ["]]"] = 0x27E7,
+}
+for k, v in pairs(digraphs) do
+  vim.cmd(("digraph %s %d"):format(k, v))
+end
