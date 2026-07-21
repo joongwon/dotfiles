@@ -1,0 +1,123 @@
+* {
+  font-family: "Noto Sans", sans-serif;
+  font-size: 14px;
+  min-height: 0;
+}
+
+window#waybar {
+  background: transparent;
+  color: #ffffff;
+}
+
+button {
+  min-width: 0;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+  color: #ffffff;
+  background: none;
+}
+
+.workspace-label {
+  font-size: 20px;
+}
+
+#workspaces button,
+#memory,
+#disk,
+#network,
+#cpu,
+#pulseaudio,
+#clock,
+#tray {
+  background-color: #1a1a1a;
+  border-radius: 0;
+  color: #ffffff;
+}
+
+#workspaces button {
+  padding: 0 10px;
+}
+
+#workspaces > button:not(:last-child) {
+  border-right: 2px solid #4a4a4a;
+}
+
+#workspaces .taskbar-window {
+  padding: 0 8px;
+}
+
+#workspaces .taskbar-window:hover {
+  background-color: #334d66;
+}
+
+#workspaces .taskbar-window.active {
+  background-color: #6699cc;
+  color: #101010;
+  box-shadow: inset 0 -2px #ffffff;
+}
+
+#network,
+#cpu {
+  font-family: "Noto Sans Mono", monospace;
+}
+
+#workspaces button:hover,
+#memory:hover,
+#disk:hover,
+#network:hover,
+#cpu:hover,
+#pulseaudio:hover,
+#clock:hover {
+  background-color: #323232;
+}
+
+#memory {
+  padding-left: 10px;
+  padding-right: 5px;
+}
+
+#disk,
+#network,
+#cpu {
+  padding: 0 5px;
+}
+
+#pulseaudio,
+#clock {
+  padding: 0 10px;
+}
+
+#tray {
+  padding: 0 10px 0 6px;
+}
+
+#network.disconnected,
+#pulseaudio.muted {
+  color: #cccccc;
+}
+
+#tray > .passive {
+  -gtk-icon-effect: dim;
+}
+
+#tray > .needs-attention {
+  -gtk-icon-effect: highlight;
+}
+
+tooltip {
+  border: none;
+  border-radius: 0;
+  background-color: #1a1a1a;
+}
+
+tooltip label {
+  color: #ffffff;
+}
+
+calendar {
+  border: none;
+  border-radius: 0;
+  color: #ffffff;
+  background-color: #1a1a1a;
+}

@@ -1,0 +1,11 @@
+[Unit]
+Description=Waybar
+PartOf=graphical-session.target
+After=graphical-session.target
+
+[Service]
+ExecStart=waybar
+Restart=on-failure
+
+[Install]
+WantedBy=graphical-session.target
