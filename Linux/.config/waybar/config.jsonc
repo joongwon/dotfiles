@@ -1,99 +1,26 @@
-{
-    "position": "bottom",
-    "height": 30,
-    "spacing": 0,
-
-    "modules-left": [
-        "hyprland/workspaces"
-    ],
+[
+  {
+    /* Main monitor bar configuration */
+    "output": "HDMI-A-1",
+    "modules-left": ["hyprland/workspaces"],
     "modules-center": [],
     "modules-right": [
-        "memory",
-        "disk",
-        "network",
-        "cpu",
-        "pulseaudio",
-        "clock",
-        "tray"
+      "memory",
+      "disk",
+      "network",
+      "cpu",
+      "pulseaudio",
+      "clock",
+      "tray",
     ],
-
-    "hyprland/workspaces": {
-        "format": "{icon} {windows}",
-        "format-icons": {
-            "1": "󰎤",
-            "2": "󰎧",
-            "3": "󰎪",
-            "4": "󰎭",
-            "5": "󰎱",
-            "6": "󰎳",
-            "7": "󰎶",
-            "8": "󰎹",
-            "9": "󰎼",
-            "10": "󰽽",
-            "discord": "󰬋",
-            "mail": "󰬔"
-        },
-        "workspace-taskbar": {
-          "enable": true,
-          "update-active-window": true,
-          "format": "{icon} ⟨{title:.20}⟩",
-          "on-click-window": "hyprctl dispatch \"hl.dsp.focus({ window = 'address:{address}' })\""
-        }
-    },
-
-    "memory": {
-        "interval": 30,
-        "format": " {used:0.1f}/{total:0.1f}GB",
-        "tooltip-format": "Memory: {used:0.1f} / {total:0.1f} GiB ({percentage}%)"
-    },
-
-    "disk": {
-        "path": "/",
-        "interval": 300,
-        "unit": "GB",
-        "format": "󰋊 {specific_used:0.1f}/{specific_total:0.1f}GB",
-        "tooltip-format": "Disk /: {specific_used:0.1f} / {specific_total:0.1f} GB ({percentage_used}%)"
-    },
-
-    "network": {
-        "interval": 3,
-        "format": "↓{bandwidthDownBits:>3} ↑{bandwidthUpBits:>3}",
-        "format-disconnected": "󰖪",
-        "tooltip-format": "{ifname}: {ipaddr}/{cidr}",
-        "tooltip-format-disconnected": "Network disconnected",
-        "align": 0
-    },
-
-    "cpu": {
-        "interval": 1,
-        "format": " {load:.2f}",
-        "tooltip-format": "CPU load: {load}\nUsage: {usage}%",
-        "align": 0
-    },
-
-    "pulseaudio": {
-        "format": "{icon} {volume}%",
-        "format-bluetooth": " {icon} {volume}%",
-        "format-muted": "󰝟 muted",
-        "format-icons": {
-            "headphone": "",
-            "headset": "󰋎",
-            "hands-free": "󰋎",
-            "speaker": "󰓃",
-            "default": ["", "", ""]
-        },
-        "scroll-step": 1,
-        "on-click": "pavucontrol"
-    },
-
-    "clock": {
-        "interval": 60,
-        "format": "  {:%Y-%m-%d %H:%M}",
-        "tooltip-format": "<tt>{calendar}</tt>"
-    },
-
-    "tray": {
-        "icon-size": 16,
-        "spacing": 4
-    }
-}
+    "include": ["~/.config/waybar/common.jsonc"],
+  },
+  {
+    /* Secondary monitor bar configuration */
+    "output": "DVI-D-1",
+    "modules-left": ["hyprland/workspaces"],
+    "modules-center": [],
+    "modules-right": [],
+    "include": ["~/.config/waybar/common.jsonc"],
+  },
+]

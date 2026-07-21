@@ -124,14 +124,31 @@ end)
 
 safesetup(function()
   local conform = require "conform"
-  local formatters = {
-    ["*"] = { "trim_whitespace" },
-    lua = { "stylua" },
-    python = { "ruff_format" },
-    ocaml = { "ocamlformat" },
+  local formatters_inv = {
+    trim_whitespace = { "*" },
+    stylua = { "lua" },
+    ruff_format = { "python" },
+    ocamlformat = { "ocaml" },
+    prettierd = {
+      "javascript",
+      "typescript",
+      "javascriptreact",
+      "typescriptreact",
+      "yaml",
+      "css",
+      "html",
+      "json",
+      "jsonc",
+    },
   }
-  for _, ft in ipairs { "javascript", "typescript", "javascriptreact", "typescriptreact", "yaml", "css" } do
-    formatters[ft] = { "prettierd" }
+  local formatters = {}
+  for name, fts in pairs(formatters_inv) do
+    for _, ft in ipairs(fts) do
+      if not formatters[ft] then
+        formatters[ft] = {}
+      end
+      table.insert(formatters[ft], name)
+    end
   end
   conform.setup {
     formatters_by_ft = formatters,
@@ -237,9 +254,13 @@ end
 
 safesetup(function()
   local fzf = require "fzf-lua"
+  fzf.setup {
+    files = {
+      fd_opts = [[--color=never --type f --type d --type l --exclude .git --exclude .jj]],
+    },
+  }
   vim.keymap.set("n", "<leader>ff", fzf.files, { desc = "Find files" })
   vim.keymap.set("n", "<leader>fg", fzf.live_grep, { desc = "Live grep" })
-  vim.keymap.set("n", "<leader>fb", fzf.buffers, { desc = "List buffers" })
   vim.keymap.set("n", "<leader>fc", function()
     fzf.files { cwd = "~/.config", follow = true }
   end, { desc = "Find config files" })
@@ -319,6 +340,13 @@ vim.api.nvim_create_autocmd("FileType", {
       buffer = true,
       desc = "Open VimTeX output beside quickfix",
     })
+  end,
+})
+
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "jsonc",
+  callback = function()
+    vim.api.nvim_set_hl(0, "jsonTrailingCommaError", {})
   end,
 })
 
