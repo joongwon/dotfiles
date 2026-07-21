@@ -1,11 +1,8 @@
 pcall(require, "extra")
 
-local home = os.getenv "HOME"
-local old_path = os.getenv "PATH"
 hl.env("GTK_IM_MODULE", "fcitx5")
 hl.env("QT_IM_MODULE", "fcitx5")
 hl.env("XMODIFIERS", "@im=fcitx5")
-hl.env("PATH", table.concat { home .. "/.local/bin", "/usr/local/texlive/2024/bin/x86_64-linux", old_path })
 
 hl.on("hyprland.start", function()
   hl.exec_cmd "xrdb ~/.Xresources"

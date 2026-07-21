@@ -33,7 +33,7 @@
       "src": "https://github.com/ibhagwan/fzf-lua"
     },
     "lean.nvim": {
-      "rev": "66f8b951d21992e3ba7274692a8d41a0461aadb2",
+      "rev": "c2d274ed26192fbf43f222d24a8f0d08d1c617f9",
       "src": "https://github.com/julian/lean.nvim"
     },
     "lualine.nvim": {
@@ -45,7 +45,7 @@
       "src": "https://github.com/hrsh7th/nvim-cmp"
     },
     "nvim-treesitter": {
-      "rev": "4916d6592ede8c07973490d9322f187e07dfefac",
+      "rev": "7248feaca45e4d944591497964bc19afa89ad1c6",
       "src": "https://github.com/nvim-treesitter/nvim-treesitter"
     },
     "oil.nvim": {
@@ -61,7 +61,7 @@
       "src": "https://github.com/lewis6991/ts-install.nvim"
     },
     "vimtex": {
-      "rev": "a5949d2800c1866c878956d49c51fc8d003c6b99",
+      "rev": "6368e31fdaf766ff908a2c06e9ee14fc66dec409",
       "src": "https://github.com/lervag/vimtex"
     }
   }
