@@ -2,7 +2,7 @@
 
 set -euo pipefail
 
-repo_root=$(cd -- "$(dirname -- "$0")" && pwd)
+repo_root=$(git rev-parse --show-toplevel)
 
 if ! command -v stow >/dev/null 2>&1; then
   echo "error: GNU Stow is required but not installed" >&2
@@ -28,29 +28,6 @@ machine_package="machine-$hostname"
 if [ -d "$machine_package" ]; then
   packages+=("$machine_package")
 fi
-
-cleanup_legacy_links() {
-  local package relpath target current
-
-  for package in "${packages[@]}"; do
-    while IFS= read -r relpath; do
-      target="$HOME/$relpath"
-      if [ ! -L "$target" ]; then
-        continue
-      fi
-
-      current=$(readlink "$target")
-      case "$current" in
-        "$repo_root"/*)
-          echo "Removing legacy link $target -> $current"
-          rm "$target"
-          ;;
-      esac
-    done < <(cd "$package" && find . -mindepth 1 | sed 's#^\./##')
-  done
-}
-
-cleanup_legacy_links
 
 echo "Stowing packages for $hostname: ${packages[*]}"
 stow -Rv -t "$HOME" "${packages[@]}"
