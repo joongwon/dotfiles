@@ -129,3 +129,10 @@ hl.config {
     },
   },
 }
+
+-- Cursor
+hl.config {
+  cursor = {
+    no_warps = true,
+  },
+}
