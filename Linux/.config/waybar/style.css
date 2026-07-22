@@ -1,12 +1,8 @@
-* {
-  font-family: "Noto Sans", sans-serif;
-  font-size: 14px;
-  min-height: 0;
-}
-
 window#waybar {
   background: transparent;
   color: #ffffff;
+  font-family: "Noto Sans", sans-serif;
+  font-size: 14px;
 }
 
 button {
@@ -14,7 +10,6 @@ button {
   border: none;
   border-radius: 0;
   box-shadow: none;
-  color: #ffffff;
   background: none;
 }
 
@@ -22,53 +17,42 @@ button {
   font-size: 20px;
 }
 
-#workspaces button,
-#memory,
-#disk,
-#network,
-#cpu,
-#pulseaudio,
-#clock,
-#tray {
-  background-color: #1a1a1a;
-  border-radius: 0;
-  color: #ffffff;
-}
-
 #workspaces button {
-  padding: 0 10px;
+  padding: 0;
 }
 
-#workspaces > button:not(:last-child) {
-  border-right: 2px solid #4a4a4a;
+#workspaces button,
+.modules-right {
+  margin: 0 1px;
+  color: #ffffff;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 5px 5px 0 0;
 }
 
-#workspaces .taskbar-window {
+.workspace-label ~ label {
+  margin: -99px;
+}
+
+.workspace-label {
+  margin: 0 0 0 8px;
+}
+
+.workspace-label ~ :last-child .taskbar-window {
+  border-top-right-radius: 5px;
+}
+
+.taskbar-window {
   padding: 0 8px;
+  margin: 0;
 }
 
-#workspaces .taskbar-window:hover {
-  background-color: #334d66;
-}
-
-#workspaces .taskbar-window.active {
-  background-color: #6699cc;
-  color: #101010;
+.taskbar-window.active {
+  background-color: rgba(142, 193, 244, 0.5);
   box-shadow: inset 0 -2px #ffffff;
 }
 
-.modules-right * {
+.modules-right .module {
   font-family: "Noto Sans Mono", monospace;
-}
-
-#workspaces button:hover,
-#memory:hover,
-#disk:hover,
-#network:hover,
-#cpu:hover,
-#pulseaudio:hover,
-#clock:hover {
-  background-color: #323232;
 }
 
 #memory {

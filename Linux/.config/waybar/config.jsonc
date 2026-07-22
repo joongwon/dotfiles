@@ -1,7 +1,7 @@
 [
   {
     /* Main monitor bar configuration */
-    "output": "HDMI-A-1",
+    "output": ["HDMI-A-1", "DP-1"],
     "modules-left": ["hyprland/workspaces"],
     "modules-center": [],
     "modules-right": [
