@@ -2,4 +2,3 @@
 .*.swp
 .netrwhlst
 .DS_Store
-**/systemd/user/*.wants
