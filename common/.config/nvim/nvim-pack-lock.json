@@ -60,6 +60,10 @@
       "rev": "7c5569256212d17041d5f3057e5fcbaf646f6643",
       "src": "https://github.com/lewis6991/ts-install.nvim"
     },
+    "vim-reason-plus": {
+      "rev": "c11a2940f8f3e3915e472c366fe460b0fe008bac",
+      "src": "https://github.com/reasonml-editor/vim-reason-plus"
+    },
     "vimtex": {
       "rev": "6368e31fdaf766ff908a2c06e9ee14fc66dec409",
       "src": "https://github.com/lervag/vimtex"

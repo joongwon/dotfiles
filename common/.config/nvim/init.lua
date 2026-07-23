@@ -29,6 +29,18 @@ vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, { desc = "Code action
 vim.keymap.set("n", "gb", "<cmd>bnext<cr>", { desc = "Next buffer" })
 vim.keymap.set("n", "gB", "<cmd>bprevious<cr>", { desc = "Previous buffer" })
 
+-- jsonc disable false positive highlight
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "jsonc",
+  callback = function()
+    vim.api.nvim_set_hl(0, "jsonTrailingCommaError", {})
+  end,
+})
+
+-- digraphs
+require "digraphs"
+
+
 -- helper functions for package management
 local packs = {}
 local setups = {}
@@ -321,6 +333,9 @@ packadd("ibhagwan/fzf-lua", function()
   end, { desc = "Find config files" })
 end)
 
+--
+packadd("reasonml-editor/vim-reason-plus", function() end)
+
 -- vimtex output beside quickfix
 vim.api.nvim_create_autocmd("FileType", {
   pattern = "tex",
@@ -376,17 +391,6 @@ vim.api.nvim_create_autocmd("FileType", {
     })
   end,
 })
-
--- jsonc highlight
-vim.api.nvim_create_autocmd("FileType", {
-  pattern = "jsonc",
-  callback = function()
-    vim.api.nvim_set_hl(0, "jsonTrailingCommaError", {})
-  end,
-})
-
--- digraphs
-require "digraphs"
 
 -- install packages
 vim.pack.add(packs)
