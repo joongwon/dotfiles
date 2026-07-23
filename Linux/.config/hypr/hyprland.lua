@@ -41,14 +41,31 @@ hl.bind(mod .. " + SHIFT + J", hl.dsp.window.move { direction = "d", group_aware
 hl.bind(mod .. " + SHIFT + K", hl.dsp.window.move { direction = "u", group_aware = true })
 hl.bind(mod .. " + SHIFT + L", hl.dsp.window.move { direction = "r", group_aware = true })
 
+-- Workspace focus helper
+-- Since Hyprland's focus command does not work for visible but empty workspaces,
+-- we need to check if the workspace is visible and focus the monitor instead.
+local function focus_workspace(id)
+  return function()
+    local workspace = hl.get_workspace(id)
+    if workspace == nil then
+      hl.dispatch(hl.dsp.focus { workspace = id })
+    elseif workspace.visible then
+      hl.dispatch(hl.dsp.focus { monitor = workspace.monitor })
+    else
+      hl.dispatch(hl.dsp.focus { workspace = id })
+    end
+  end
+end
+
 -- Workspaces 1..9
 for i = 1, 9 do
-  hl.bind(mod .. " + " .. i, hl.dsp.focus { workspace = i })
+  hl.bind(mod .. " + " .. i, focus_workspace(i))
   hl.bind(mod .. " + SHIFT + " .. i, hl.dsp.window.move { workspace = i })
 end
 
 -- Workspace 10
-hl.bind(mod .. " + 0", hl.dsp.focus { workspace = 10 })
+hl.bind(mod .. " + 0", focus_workspace(10))
+hl.bind(mod .. " + SHIFT + 0", hl.dsp.window.move { workspace = 10 })
 
 -- Named workspaces
 local named_workspaces = {
@@ -58,7 +75,7 @@ local named_workspaces = {
 }
 
 for key, workspace in pairs(named_workspaces) do
-  hl.bind(mod .. " + " .. key, hl.dsp.focus { workspace = workspace })
+  hl.bind(mod .. " + " .. key, focus_workspace(workspace))
   hl.bind(mod .. " + SHIFT + " .. key, hl.dsp.window.move { workspace = workspace })
 end
 

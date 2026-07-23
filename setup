@@ -9,6 +9,12 @@ if ! command -v stow >/dev/null 2>&1; then
   exit 1
 fi
 
+# Prevent linking whole systemd directory,
+# so that *.wants directories are not created in this repo.
+if [ ! -d "$HOME/.config/systemd/user" ]; then
+  mkdir -p "$HOME/.config/systemd/user"
+fi
+
 if [ -f /etc/hostname ]; then
   hostname=$(cat /etc/hostname)
 else
