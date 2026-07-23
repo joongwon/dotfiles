@@ -1,8 +1,8 @@
 pcall(require, "extra")
 
-hl.env("GTK_IM_MODULE", "fcitx5")
-hl.env("QT_IM_MODULE", "fcitx5")
-hl.env("XMODIFIERS", "@im=fcitx5")
+hl.env("GTK_IM_MODULE", "fcitx")
+hl.env("QT_IM_MODULE", "fcitx")
+hl.env("XMODIFIERS", "@im=fcitx")
 
 hl.on("hyprland.start", function()
   hl.exec_cmd "xrdb ~/.Xresources"
