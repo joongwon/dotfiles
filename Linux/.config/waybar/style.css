@@ -13,18 +13,21 @@ button {
   background: none;
 }
 
-.workspace-label {
-  font-size: 20px;
-}
-
 #workspaces button {
   padding: 0;
+  margin: 0 1px;
+  color: white;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 5px 5px 0 0;
 }
 
-#workspaces button,
+#workspaces button.active {
+  background-color: rgba(142, 193, 244, 0.3);
+  color: black;
+}
+
 .modules-right {
   margin: 0 1px;
-  color: #ffffff;
   background-color: rgba(0, 0, 0, 0.5);
   border-radius: 5px 5px 0 0;
 }
@@ -34,11 +37,23 @@ button {
 }
 
 .workspace-label {
-  margin: 0 0 0 8px;
+  padding: 0 0 0 8px;
+  font-size: 20px;
+  border-top-left-radius: 5px;
 }
 
-.workspace-label ~ :last-child .taskbar-window {
+.workspace-label ~ :last-child .taskbar-window,
+.workspace-label:last-child {
   border-top-right-radius: 5px;
+}
+
+.taskbar-window:hover:not(.active) {
+  background-color: rgba(142, 193, 244, 0.3);
+}
+
+.active .workspace-label {
+  box-shadow: inset 0 -2px #ffffff;
+  background-color: rgba(254, 213, 152, 0.9);
 }
 
 .taskbar-window {
@@ -47,8 +62,8 @@ button {
 }
 
 .taskbar-window.active {
-  background-color: rgba(142, 193, 244, 0.5);
   box-shadow: inset 0 -2px #ffffff;
+  background-color: rgba(142, 193, 244, 0.9);
 }
 
 .modules-right .module {
