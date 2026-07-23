@@ -99,7 +99,22 @@ safesetup(function()
 end)
 
 safesetup(function()
-  require("lualine").setup {
+  local function vimtex_status()
+    local vimtex = vim.b.vimtex
+    local compiler = vimtex and vimtex.compiler
+
+    if not compiler then
+      return ""
+    end
+
+    return ({
+      [1] = "TeX ⟳",
+      [2] = "TeX ✓",
+      [3] = "TeX ✗",
+    })[compiler.status] or ""
+  end
+  local lualine = require "lualine"
+  lualine.setup {
     options = {
       theme = "auto",
       globalstatus = true,
@@ -115,11 +130,24 @@ safesetup(function()
         },
       },
       lualine_c = { "filename" },
-      lualine_x = { "encoding", "fileformat", "filetype" },
+      lualine_x = { vimtex_status, "encoding", "fileformat", "filetype" },
       lualine_y = { "progress" },
       lualine_z = { "location" },
     },
   }
+  vim.api.nvim_create_autocmd("User", {
+    pattern = {
+      "VimtexEventCompiling",
+      "VimtexEventCompileSuccess",
+      "VimtexEventCompileFailed",
+      "VimtexEventCompileStopped",
+    },
+    callback = function()
+      lualine.refresh {
+        place = { "statusline" },
+      }
+    end,
+  })
 end)
 
 safesetup(function()
