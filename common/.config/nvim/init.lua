@@ -1,21 +1,6 @@
 -- dependencies: tree-sitter-cli, lua-language-server, ocaml-lsp-server, basedpyright, stylua, ruff, ocamlformat, zathura
-local packspec = [[
-  github/copilot.vim
-  ibhagwan/fzf-lua
-  stevearc/oil.nvim
-  lervag/vimtex
-  stevearc/conform.nvim
-  nvim-lualine/lualine.nvim
-  hrsh7th/nvim-cmp
-  hrsh7th/cmp-nvim-lsp
-  akinsho/bufferline.nvim
-  stevearc/aerial.nvim
-  joongwon/overleaf-autosync.nvim
-  julian/lean.nvim
-  nvim-treesitter/nvim-treesitter
-  lewis6991/ts-install.nvim
-]]
 
+-- vim options
 vim.opt.expandtab = true
 vim.opt.shiftwidth = 2
 vim.opt.tabstop = 2
@@ -30,40 +15,72 @@ vim.opt.showbreak = "+++>"
 vim.opt.title = true
 vim.opt.foldcolumn = "1"
 
-vim.g.copilot_no_tab_map = true
-
-vim.g.lean_config = {
-  mappings = true,
+-- vim diagnostic
+vim.diagnostic.config {
+  virtual_text = true,
 }
+vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, { desc = "Show diagnostics" })
 
-vim.g.vimtex_fold_enabled = 1
-vim.g.vimtex_fold_manual = 1
-if vim.fn.executable "zathura" == 1 then
-  vim.g.vimtex_view_method = "zathura"
-elseif vim.fn.has "mac" == 1 then
-  vim.g.vimtex_view_method = "skim"
-end
+-- vim lsp keymaps
+vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, { desc = "Rename symbol" })
+vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, { desc = "Code action" })
 
+-- miscellaneous keymaps
+vim.keymap.set("n", "gb", "<cmd>bnext<cr>", { desc = "Next buffer" })
+vim.keymap.set("n", "gB", "<cmd>bprevious<cr>", { desc = "Previous buffer" })
+
+-- helper functions for package management
 local packs = {}
-for p in packspec:gmatch "%S+" do
-  table.insert(packs, "https://github.com/" .. p)
-end
-vim.pack.add(packs)
-
-local function safesetup(f)
-  local ok, err = pcall(f)
-  if not ok then
-    vim.notify("Error setting up plugin: " .. err, vim.log.levels.ERROR)
-  end
+local setups = {}
+local function packadd(name, f)
+  table.insert(packs, "https://github.com/" .. name)
+  setups[name] = f
 end
 
-safesetup(function()
-  require("aerial").setup {
-    backends = { "lsp", "treesitter" },
+-- copilot
+packadd("github/copilot.vim", function()
+  vim.g.copilot_no_tab_map = true
+  vim.keymap.set("i", "<C-M-;>", 'copilot#Accept("")', {
+    expr = true,
+    replace_keycodes = false,
+    desc = "Accept Copilot suggestion",
+  })
+  vim.keymap.set("i", "<M-;>", "<plug>(copilot-accept-word)", {
+    desc = "Accept Copilot suggestion word by word",
+  })
+  vim.keymap.set("i", "<C-;>", "<plug>(copilot-accept-line)", {
+    desc = "Accept Copilot suggestion line by line",
+  })
+end)
+
+-- lean
+packadd("leanprover/lean.nvim", function()
+  vim.g.lean_config = {
+    mappings = true,
   }
 end)
 
-safesetup(function()
+-- vimtex
+packadd("lervag/vimtex", function()
+  vim.g.vimtex_fold_enabled = 1
+  vim.g.vimtex_fold_manual = 1
+  if vim.fn.executable "zathura" == 1 then
+    vim.g.vimtex_view_method = "zathura"
+  elseif vim.fn.has "mac" == 1 then
+    vim.g.vimtex_view_method = "skim"
+  end
+end)
+
+-- aerial
+packadd("stevearc/aerial.nvim", function()
+  require("aerial").setup {
+    backends = { "lsp", "treesitter" },
+  }
+  vim.keymap.set("n", "<leader>a", "<cmd>AerialToggle!<cr>", { desc = "Toggle code outline" })
+end)
+
+-- overleaf-autosync
+packadd("joongwon/overleaf-autosync.nvim", function()
   require("overleaf_autosync").setup {
     whitelist_file = ".overleafwl",
     auto_push = true,
@@ -71,7 +88,9 @@ safesetup(function()
   }
 end)
 
-safesetup(function()
+-- nvim-cmp
+packadd("hrsh7th/cmp-nvim-lsp", function() end)
+packadd("hrsh7th/nvim-cmp", function()
   local cmp = require "cmp"
   cmp.setup {
     mapping = {
@@ -86,7 +105,8 @@ safesetup(function()
   }
 end)
 
-safesetup(function()
+-- bufferline
+packadd("akinsho/bufferline.nvim", function()
   require("bufferline").setup {
     options = {
       mode = "tabs",
@@ -98,7 +118,8 @@ safesetup(function()
   }
 end)
 
-safesetup(function()
+-- lualine
+packadd("nvim-lualine/lualine.nvim", function()
   local function vimtex_status()
     local vimtex = vim.b.vimtex
     local compiler = vimtex and vimtex.compiler
@@ -150,7 +171,8 @@ safesetup(function()
   })
 end)
 
-safesetup(function()
+-- conform
+packadd("stevearc/conform.nvim", function()
   local conform = require "conform"
   local formatters_inv = {
     trim_whitespace = { "*" },
@@ -193,7 +215,9 @@ safesetup(function()
   end, { desc = "Format file" })
 end)
 
-safesetup(function()
+-- treesitter
+packadd("nvim-treesitter/nvim-treesitter", function() end)
+packadd("lewis6991/ts-install.nvim", function()
   local ts_filetypes = {
     "lua",
     "vim",
@@ -237,7 +261,8 @@ safesetup(function()
   })
 end)
 
-safesetup(function()
+-- oil
+packadd("stevearc/oil.nvim", function()
   require("oil").setup {
     view_options = {
       show_hidden = true,
@@ -245,6 +270,7 @@ safesetup(function()
   }
 end)
 
+-- lsp configs
 ---@type table<string, vim.lsp.Config>
 local lspcfgs = {
   lua_ls = {
@@ -280,7 +306,8 @@ for name, config in pairs(lspcfgs) do
   vim.lsp.enable(name)
 end
 
-safesetup(function()
+-- fzf-lua
+packadd("ibhagwan/fzf-lua", function()
   local fzf = require "fzf-lua"
   fzf.setup {
     files = {
@@ -294,28 +321,7 @@ safesetup(function()
   end, { desc = "Find config files" })
 end)
 
-vim.diagnostic.config {
-  virtual_text = true,
-}
-
-vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, { desc = "Show diagnostics" })
-vim.keymap.set("i", "<C-M-;>", 'copilot#Accept("")', {
-  expr = true,
-  replace_keycodes = false,
-  desc = "Accept Copilot suggestion",
-})
-vim.keymap.set("i", "<M-;>", "<plug>(copilot-accept-word)", {
-  desc = "Accept Copilot suggestion word by word",
-})
-vim.keymap.set("i", "<C-;>", "<plug>(copilot-accept-line)", {
-  desc = "Accept Copilot suggestion line by line",
-})
-vim.keymap.set("n", "gb", "<cmd>bnext<cr>", { desc = "Next buffer" })
-vim.keymap.set("n", "gB", "<cmd>bprevious<cr>", { desc = "Previous buffer" })
-vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, { desc = "Rename symbol" })
-vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, { desc = "Code action" })
-vim.keymap.set("n", "<leader>a", "<cmd>AerialToggle!<cr>", { desc = "Toggle code outline" })
-
+-- vimtex output beside quickfix
 vim.api.nvim_create_autocmd("FileType", {
   pattern = "tex",
   callback = function()
@@ -371,6 +377,7 @@ vim.api.nvim_create_autocmd("FileType", {
   end,
 })
 
+-- jsonc highlight
 vim.api.nvim_create_autocmd("FileType", {
   pattern = "jsonc",
   callback = function()
@@ -380,3 +387,12 @@ vim.api.nvim_create_autocmd("FileType", {
 
 -- digraphs
 require "digraphs"
+
+-- install packages
+vim.pack.add(packs)
+for name, f in pairs(setups) do
+  local ok, err = pcall(f)
+  if not ok then
+    vim.notify("Error setting up plugin " .. name .. ": " .. err, vim.log.levels.ERROR)
+  end
+end
