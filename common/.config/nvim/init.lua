@@ -14,11 +14,13 @@ vim.opt.listchars = "tab:→ ,eol:¬,nbsp:·,trail:•,extends:⟩,precedes:⟨"
 vim.opt.showbreak = "+++>"
 vim.opt.title = true
 vim.opt.foldcolumn = "1"
+vim.opt.conceallevel = 2
+
+-- vim conceal higlight
+vim.api.nvim_set_hl(0, "Conceal", { fg = "#5c6370" })
 
 -- vim diagnostic
-vim.diagnostic.config {
-  virtual_text = true,
-}
+vim.diagnostic.config { virtual_text = true }
 vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, { desc = "Show diagnostics" })
 
 -- vim lsp keymaps
@@ -81,6 +83,26 @@ packadd("lervag/vimtex", function()
   elseif vim.fn.has "mac" == 1 then
     vim.g.vimtex_view_method = "skim"
   end
+  vim.g.vimtex_syntax_custom_cmds = {
+    { name = "left", mathmode = 1, conceal = 1 },
+    { name = "right", mathmode = 1, conceal = 1 },
+  }
+  vim.g.vimtex_syntax_conceal = {
+    accents = 1,
+    ligatures = 1,
+    cites = 1,
+    fancy = 1,
+    texTabularChar = 1,
+    spacing = 1,
+    greek = 1,
+    math_bounds = 0,
+    math_delimiters = 1,
+    math_fracs = 1,
+    math_super_sub = 1,
+    math_symbols = 1,
+    sections = 0,
+    styles = 1,
+  }
 end)
 
 -- aerial
