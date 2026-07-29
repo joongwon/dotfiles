@@ -334,6 +334,11 @@ local lspcfgs = {
     filetypes = { "javascript", "typescript", "javascriptreact", "typescriptreact" },
     root_markers = { { "package.json" } },
   },
+  rust_analyzer = {
+    cmd = { "rust-analyzer" },
+    filetypes = { "rust" },
+    root_markers = { "Cargo.toml" },
+  },
 }
 for name, config in pairs(lspcfgs) do
   vim.lsp.config[name] = config
