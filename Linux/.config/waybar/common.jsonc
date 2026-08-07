@@ -44,7 +44,7 @@
 
   "network": {
     "interval": 3,
-    "format": "↓{bandwidthDownBits:>3} ↑{bandwidthUpBits:>3}",
+    "format": "󰛴 {bandwidthDownBits:<3} 󰛶 {bandwidthUpBits:<3}",
     "format-disconnected": "󰖪",
     "tooltip-format": "{ifname}: {ipaddr}/{cidr}",
     "tooltip-format-disconnected": "Network disconnected",
