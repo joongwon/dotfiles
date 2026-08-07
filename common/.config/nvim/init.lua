@@ -322,7 +322,7 @@ local plugins = {
         lsp_fallback = true,
       },
     }
-    vim.keymap.set("n", "<leader>f", function()
+    vim.keymap.set("n", "<leader>F", function()
       conform.format {
         async = true,
         lsp_fallback = true,
@@ -388,15 +388,14 @@ local plugins = {
   ["ibhagwan/fzf-lua"] = function()
     local fzf = require "fzf-lua"
 
-    local base_fd =
-      "fd --color=never --type f --type d --type l -u --exclude .git --exclude node_modules --exclude __pycache__ --exclude .venv -- "
+    local base_fd = "fd --color=never -tf -td -tl -u -E .git -E node_modules -E __pycache__ -E .venv -- . "
     local base_rg =
       "rg --color=never --hidden --glob '!.git/*' --glob '!node_modules/*' --glob '!__pycache__/*' --glob '!.venv/*' "
     vim.keymap.set("n", "<leader>ff", function()
       return fzf.fzf_exec(base_fd, { prompt = "files> ", actions = fzf.defaults.actions.files })
     end, { desc = "FZF Find files" })
     vim.keymap.set("n", "<leader>fc", function()
-      return fzf.fzf_exec(base_fd .. "~/.config", { prompt = "configs> ", actions = fzf.defaults.actions.files })
+      return fzf.fzf_exec(base_fd .. "~/dotfiles", { prompt = "dotfiles> ", actions = fzf.defaults.actions.files })
     end, { desc = "FZF Find config files" })
     vim.keymap.set("n", "<leader>fg", function()
       return fzf.fzf_live(base_rg, { prompt = "grep> ", actions = fzf.defaults.actions.files })
