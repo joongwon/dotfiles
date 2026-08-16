@@ -39,6 +39,14 @@ vim.api.nvim_create_autocmd("FileType", {
   end,
 })
 
+-- filetypes
+vim.filetype.add {
+  extension = {
+    mll = "ocamllex",
+    mly = "menhir",
+  },
+}
+
 -- digraphs
 require "digraphs"
 
@@ -75,6 +83,11 @@ local lspcfgs = {
     cmd = { "rust-analyzer" },
     filetypes = { "rust" },
     root_markers = { "Cargo.toml" },
+  },
+  menhir_lsp = {
+    cmd = { "menhir-lsp" },
+    filetypes = { "menhir", "ocamllex" },
+    root_markers = { { "dune-project" } },
   },
 }
 for name, config in pairs(lspcfgs) do

@@ -36,4 +36,14 @@ if [ -d "$machine_package" ]; then
 fi
 
 echo "Stowing packages for $hostname: ${packages[*]}"
-stow -Rv -t "$HOME" "${packages[@]}"
+stow -R -t "$HOME" "${packages[@]}"
+echo "Stowing complete."
+
+echo "Running metapac"
+metapac sync
+echo "Metapac complete."
+
+echo "Installing opam packages"
+xargs opam install < "$repo_root/opam-packages"
+echo "Opam packages installed."
+
