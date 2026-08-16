@@ -388,10 +388,20 @@ local plugins = {
     })
   end,
 
-  ["stevearc/oil.nvim"] = function()
-    require("oil").setup {
-      view_options = {
-        show_hidden = true,
+  --  ["stevearc/oil.nvim"] = function()
+  --    require("oil").setup {
+  --      view_options = {
+  --        show_hidden = true,
+  --      },
+  --    }
+  --  end,
+  ["FylerOrg/fyler.nvim"] = function()
+    require("fyler").setup {
+      indent_guide = true,
+      ui = {
+        hidden_items = {
+          switches = {},
+        },
       },
     }
   end,

@@ -28,6 +28,10 @@
       "rev": "a12fd5672110c8aa7e3c8419e28c96943ca179be",
       "src": "https://github.com/github/copilot.vim"
     },
+    "fyler.nvim": {
+      "rev": "377540cefb9d8162e92487507708c07da65cf5f6",
+      "src": "https://github.com/FylerOrg/fyler.nvim"
+    },
     "fzf-lua": {
       "rev": "532d463f5c83595192fe740572d8fd6902b2217a",
       "src": "https://github.com/ibhagwan/fzf-lua"
