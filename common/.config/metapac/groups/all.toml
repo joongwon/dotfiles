@@ -1,4 +1,5 @@
-arch = { packages = [
+[arch]
+packages = [
   "7zip",
   "alacritty",
   "arandr",
@@ -13,7 +14,6 @@ arch = { packages = [
   "direnv",
   "dmenu",
   "dmidecode",
-  "docker",
   "edk2-shell",
   "efivar",
   "elan-lean",
@@ -127,10 +127,12 @@ arch = { packages = [
   "zip",
   "zotero-bin",
   "zsh",
-] }
-pnpm = { packages = [
+]
+
+[pnpm]
+packages = [
   "@fsouza/prettierd",
   "prettier",
   "typescript",
   "typescript-language-server",
-] }
+]

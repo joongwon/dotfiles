@@ -21,7 +21,7 @@ hl.bind("XF86AudioLowerVolume", hl.dsp.exec_cmd "pactl set-sink-volume @DEFAULT_
 hl.bind("XF86AudioMute", hl.dsp.exec_cmd "pactl set-sink-mute @DEFAULT_SINK@ toggle")
 
 -- Launchers
-hl.bind(mod .. " + Return", hl.dsp.exec_cmd "kitty")
+hl.bind(mod .. " + Return", hl.dsp.exec_cmd "ghostty")
 hl.bind(mod .. " + Space", hl.dsp.exec_cmd "rofi -show drun")
 
 -- Session / window control

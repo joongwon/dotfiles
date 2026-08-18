@@ -1,0 +1,6 @@
+font-family = JuliaMono
+font-size = 10.5
+theme = Gruvbox Light Hard
+keybind = ctrl+shift+h=previous_tab
+keybind = ctrl+shift+l=next_tab
+keybind = ctrl+[=text:\x1b

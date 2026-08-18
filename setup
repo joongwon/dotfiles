@@ -9,6 +9,11 @@ if ! command -v stow >/dev/null 2>&1; then
   exit 1
 fi
 
+if ! command -v metapac >/dev/null 2>&1; then
+  echo "error: metapac is required but not installed" >&2
+  exit 1
+fi
+
 # Prevent linking whole systemd directory,
 # so that *.wants directories are not created in this repo.
 if [ ! -d "$HOME/.config/systemd/user" ]; then
@@ -44,6 +49,6 @@ metapac sync
 echo "Metapac complete."
 
 echo "Installing opam packages"
-xargs opam install < "$repo_root/opam-packages"
+xargs opam install -y < "$repo_root/opam-packages"
 echo "Opam packages installed."
 

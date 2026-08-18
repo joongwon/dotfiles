@@ -1,1 +1,4 @@
 enabled_backends = ["arch", "brew", "pnpm"]
+
+[arch]
+package_manager = "yay"
