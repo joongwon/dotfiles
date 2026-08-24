@@ -7,3 +7,5 @@ export BAT_THEME=gruvbox-light
 export HOMEBREW_NO_AUTO_UPDATE=1
 
 export RIPGREP_CONFIG_PATH=$HOME/.config/ripgrep/ripgreprc
+
+eval "$(/opt/homebrew/bin/brew shellenv)"

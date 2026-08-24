@@ -1,5 +1,9 @@
 {
   "plugins": {
+    "Coqtail": {
+      "rev": "8e5427f8048ee94acde03c339d7b14a0e8c7cf89",
+      "src": "https://github.com/whonore/Coqtail"
+    },
     "aerial.nvim": {
       "rev": "28fe6e822ae344544c379d60fcb13c9519a1f08a",
       "src": "https://github.com/stevearc/aerial.nvim"
