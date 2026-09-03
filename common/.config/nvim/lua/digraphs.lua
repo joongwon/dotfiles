@@ -5,7 +5,8 @@ vim.fn.digraph_set("O+", "⊕")
 vim.fn.digraph_set("[[", "⟦")
 vim.fn.digraph_set("]]", "⟧")
 vim.fn.digraph_set("D=", "≜")
-vim.fn.digraph_set("(>", "↪")
+vim.fn.digraph_set("h>", "↪")
+vim.fn.digraph_set("l>", "⇝")
 
 vim.fn.digraph_set("-/", "∖")
 
