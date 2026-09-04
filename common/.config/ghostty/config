@@ -6,3 +6,4 @@ keybind = ctrl+shift+h=previous_tab
 keybind = ctrl+shift+l=next_tab
 keybind = ctrl+[=text:\x1b
 macos-option-as-alt = true
+clipboard-paste-protection = false
