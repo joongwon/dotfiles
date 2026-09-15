@@ -1,6 +1,8 @@
 -- Miscellaneous symbols
 vim.fn.digraph_set("[_", "⊑")
 vim.fn.digraph_set("_]", "⊒")
+vim.fn.digraph_set("[U", "⊔")
+vim.fn.digraph_set("]U", "⊓")
 vim.fn.digraph_set("O+", "⊕")
 vim.fn.digraph_set("[[", "⟦")
 vim.fn.digraph_set("]]", "⟧")

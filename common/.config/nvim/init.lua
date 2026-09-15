@@ -41,6 +41,9 @@ vim.filetype.add {
     mll = "ocamllex",
     mly = "menhir",
   },
+  filename = {
+    latexmk = "perl",
+  },
 }
 
 -- digraphs
@@ -321,23 +324,8 @@ local plugins = {
 
   ["nvim-treesitter/nvim-treesitter"] = true,
   ["lewis6991/ts-install.nvim"] = function()
-    local ts_filetypes = {
-      "lua",
-      "vim",
-      "python",
-      "ocaml",
-      "javascript",
-      "typescript",
-      "css",
-      "html",
-      "json",
-      "lean",
-    }
-
     require("ts-install").setup {
       install_dir = vim.fn.stdpath "data" .. "/ts-install",
-
-      ensure_install = ts_filetypes,
 
       auto_install = true,
       auto_update = true,
@@ -353,7 +341,18 @@ local plugins = {
     }
 
     vim.api.nvim_create_autocmd("FileType", {
-      pattern = ts_filetypes,
+      pattern = {
+        "lua",
+        "vim",
+        "python",
+        "ocaml",
+        "javascript",
+        "typescript",
+        "css",
+        "html",
+        "json",
+        "lean",
+      },
       callback = function(ev)
         pcall(vim.treesitter.start, ev.buf)
 

@@ -1,6 +1,8 @@
 font-family = JuliaMono
-font-size = 10.5
+font-family = Noto Sans CJK KR
+font-size = 14
 theme = Gruvbox Light Hard
 keybind = ctrl+shift+h=previous_tab
 keybind = ctrl+shift+l=next_tab
 keybind = ctrl+[=text:\x1b
+macos-option-as-alt = true

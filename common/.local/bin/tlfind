@@ -8,8 +8,8 @@ find_query_from_log() {
   log="${1:-}"
 
   if [ -z "$log" ]; then
-    # 현재 디렉터리에서 가장 최근 .log 하나 선택
-    log="$(ls -t ./*.log 2>/dev/null | head -n1 || true)"
+    # 현재, aux, out 디렉터리에서 가장 최근 .log 하나 선택
+    log="$(ls -t ./*.log ./aux/*.log ./out/*.log 2>/dev/null | head -n1 || true)"
   fi
 
   [ -n "$log" ] || return 1
@@ -29,6 +29,16 @@ find_query_from_log() {
     q="$(
       sed -n \
         -e "s/.*\([^[:space:]]\\{1,\\}\\.[A-Za-z][A-Za-z0-9]*\\) .*not found.*/\\1/p" \
+        "$log" \
+      | tail -n1
+    )"
+  fi
+
+  if [ -z "${q:-}" ]; then
+    # 보조 패턴: ! Package tikz Error: I did not find the tikz library 'foo'.
+    q="$(
+      sed -n \
+        -e "s/.*! Package [^ ]* Error: I did not find the [^ ]* library '\([^']*\)'.*/\\1/p" \
         "$log" \
       | tail -n1
     )"
