@@ -10,7 +10,6 @@ packages = [
   "bat",
   "bdf-unifont",
   "chromium",
-  "claude-code",
   "direnv",
   "dmenu",
   "dmidecode",

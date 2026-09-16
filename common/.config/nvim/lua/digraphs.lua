@@ -10,7 +10,7 @@ vim.fn.digraph_set("D=", "≜")
 vim.fn.digraph_set("h>", "↪") -- h for "hook", > for "right arrow"
 vim.fn.digraph_set("l>", "⇝") -- l for "leadsto", > for "right arrow"
 vim.fn.digraph_set("m>", "↦") -- m for "mapsto", > for "right arrow"
-vim.fn.digraph_set("!i", "∉") -- ! for "not", i for "in"
+vim.fn.digraph_set("Ni", "∉") -- N for "not", i for "in"
 
 vim.fn.digraph_set("-/", "∖")
 

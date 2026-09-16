@@ -41,6 +41,9 @@ hl.bind(mod .. " + SHIFT + J", hl.dsp.window.move { direction = "d", group_aware
 hl.bind(mod .. " + SHIFT + K", hl.dsp.window.move { direction = "u", group_aware = true })
 hl.bind(mod .. " + SHIFT + L", hl.dsp.window.move { direction = "r", group_aware = true })
 
+-- Float toggle
+hl.bind(mod .. " + F", hl.dsp.window.float { action = "toggle" })
+
 -- Workspace focus helper
 -- Since Hyprland's focus command does not work for visible but empty workspaces,
 -- we need to check if the workspace is visible and focus the monitor instead.
