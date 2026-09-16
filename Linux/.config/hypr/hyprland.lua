@@ -6,6 +6,7 @@ hl.env("XMODIFIERS", "@im=fcitx")
 
 hl.on("hyprland.start", function()
   hl.exec_cmd "xrdb ~/.Xresources"
+  hl.exec_cmd "thunderbird"
 end)
 
 hl.animation {
