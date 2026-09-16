@@ -64,7 +64,7 @@ local lspcfgs = {
     },
   },
   ocamllsp = {
-    cmd = { "ocamllsp" },
+    cmd = { "opam", "exec", "--", "ocamllsp" },
     filetypes = { "ocaml" },
     root_markers = { { "dune-project" } },
   },
