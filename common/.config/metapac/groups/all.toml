@@ -35,6 +35,7 @@ packages = [
   "hyprland",
   "hyprlock",
   "hyprpaper",
+  "hypridle",
   "hyprshutdown",
   "imagemagick",
   "imv",

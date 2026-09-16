@@ -7,4 +7,6 @@ export BAT_THEME=gruvbox-light
 
 export RIPGREP_CONFIG_PATH=$HOME/.config/ripgrep/ripgreprc
 
-eval "$(/opt/homebrew/bin/brew shellenv)"
+if [ -f /opt/homebrew/bin/brew ]; then
+  eval "$(/opt/homebrew/bin/brew shellenv)"
+fi

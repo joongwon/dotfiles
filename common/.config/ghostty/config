@@ -1,6 +1,6 @@
 font-family = JuliaMono
 font-family = Noto Sans CJK KR
-font-size = 14
+font-size = 12
 theme = Gruvbox Light Hard
 keybind = ctrl+shift+h=previous_tab
 keybind = ctrl+shift+l=next_tab
