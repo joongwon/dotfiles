@@ -46,6 +46,9 @@ vim.filetype.add {
   },
 }
 
+-- filetype options
+vim.g.rust_fold = 1
+
 -- digraphs
 require "digraphs"
 

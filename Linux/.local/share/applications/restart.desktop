@@ -1,0 +1,7 @@
+[Desktop Entry]
+Type=Application
+Name=Restart
+Exec=hyprshutdown -t "Restarting..." --post-cmd "systemctl reboot"
+Icon=system-reboot
+Terminal=false
+Categories=System;

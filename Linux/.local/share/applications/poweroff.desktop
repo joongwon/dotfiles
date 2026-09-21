@@ -1,0 +1,7 @@
+[Desktop Entry]
+Type=Application
+Name=Power Off
+Exec=hyprshutdown -t "Shutting down..." --post-cmd "systemctl poweroff"
+Icon=system-shutdown
+Terminal=false
+Categories=System;
