@@ -91,6 +91,11 @@ local lspcfgs = {
     filetypes = { "menhir", "ocamllex" },
     root_markers = { { "dune-project" } },
   },
+  clangd = {
+    cmd = { "clangd" },
+    filetypes = { "c", "cpp", "objc", "objcpp" },
+    root_markers = { { ".clangd" }, { ".clang-tidy" }, { ".clang-format" }, { "compile_commands.json" } },
+  },
 }
 for name, config in pairs(lspcfgs) do
   vim.lsp.config[name] = config
@@ -389,9 +394,9 @@ local plugins = {
   ["ibhagwan/fzf-lua"] = function()
     local fzf = require "fzf-lua"
 
-    local base_fd = "fd --color=never -tf -td -tl -u -E .git -E node_modules -E __pycache__ -E .venv -- . "
+    local base_fd = "fd --color=always -tf -td -tl -u -E .git -E node_modules -E __pycache__ -E .venv -- . "
     local base_rg =
-      "rg --color=never --hidden --glob '!.git/*' --glob '!node_modules/*' --glob '!__pycache__/*' --glob '!.venv/*' "
+      "rg --column --line-number --no-heading --color=always --smart-case --hidden --glob '!.git/*' --glob '!node_modules/*' --glob '!__pycache__/*' --glob '!.venv/*' "
     vim.keymap.set("n", "<leader>ff", function()
       return fzf.fzf_exec(base_fd, { prompt = "files> ", actions = fzf.defaults.actions.files })
     end, { desc = "FZF Find files" })
