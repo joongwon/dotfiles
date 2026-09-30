@@ -44,8 +44,16 @@ if [[ "$(uname)" == "Darwin" ]]; then
   export PATH="/usr/local/texlive/2026/bin/universal-darwin:$PATH"
 else
   alias ls='ls --color=auto'
-  eval "$(dircolors -b ~/.dircolors)"
   export PROMPT='%F{blue}%n@%m:%F{red}%~ %f%# ';
+fi
+
+# Share .dircolors colors between fd and GNU ls on macOS and Linux.
+if [[ -r "$HOME/.dircolors" ]]; then
+  if command -v gdircolors >/dev/null 2>&1; then
+    eval "$(gdircolors -b "$HOME/.dircolors")"
+  elif command -v dircolors >/dev/null 2>&1; then
+    eval "$(dircolors -b "$HOME/.dircolors")"
+  fi
 fi
 
 command -v fzf >/dev/null 2>&1 && source <(fzf --zsh)
