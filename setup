@@ -48,7 +48,10 @@ echo "Running metapac"
 metapac sync
 echo "Metapac complete."
 
-echo "Installing opam packages"
-xargs opam install -y < "$repo_root/opam-packages"
-echo "Opam packages installed."
-
+if ! command -v opam >/dev/null 2>&1; then
+  echo "Skipping opam package installation because opam is not installed."
+else
+  echo "Installing opam packages"
+  xargs opam install -y < "$repo_root/opam-packages"
+  echo "Opam packages installed."
+fi

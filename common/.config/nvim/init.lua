@@ -22,6 +22,7 @@ vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, { desc = "Show diagn
 -- vim lsp keymaps
 vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, { desc = "Rename symbol" })
 vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, { desc = "Code action" })
+vim.cmd [[anoremenu PopUp.Find\ References <cmd>lua vim.lsp.buf.references()<cr>]]
 
 -- miscellaneous keymaps
 vim.keymap.set("n", "gb", "<cmd>bnext<cr>", { desc = "Next buffer" })
@@ -52,6 +53,7 @@ vim.g.rust_fold = 1
 -- digraphs
 require "digraphs"
 
+-- lsp configs
 ---@type table<string, vim.lsp.Config>
 local lspcfgs = {
   lua_ls = {

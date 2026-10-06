@@ -1,14 +1,29 @@
+-- Hyprland configuration
+
+-- Load extra configuration per devices
 pcall(require, "extra")
 
+-- Environment variables
 hl.env("GTK_IM_MODULE", "fcitx")
 hl.env("QT_IM_MODULE", "fcitx")
 hl.env("XMODIFIERS", "@im=fcitx")
 
+-- Startup commands
 hl.on("hyprland.start", function()
   hl.exec_cmd "xrdb ~/.Xresources"
   hl.exec_cmd "thunderbird"
+  hl.exec_cmd "hyprpm reload"
 end)
 
+-- General configuration
+hl.config {
+  general = {
+    gaps_in = 5,
+    gaps_out = 10,
+  },
+}
+
+-- Disable animations
 hl.animation {
   leaf = "global",
   enabled = false,
@@ -149,4 +164,30 @@ hl.config {
   cursor = {
     no_warps = true,
   },
+}
+
+-- Plugins
+hl.config {
+  plugin = {
+    hyprbars = {
+      bar_height = 24,
+      bar_text_size = 16,
+    },
+  },
+}
+
+hl.plugin.hyprbars.add_button {
+  icon = "",
+  action = [[hyprctl dispatch 'hl.dsp.window.close()']],
+  bg_color = "rgb(ff4040)",
+  fg_color = "rgb(ffffff)",
+  size = 16,
+}
+
+hl.plugin.hyprbars.add_button {
+  icon = "󱂬",
+  action = [[hyprctl dispatch 'hl.dsp.window.float { action = "toggle" }']],
+  bg_color = "rgb(ffffff)",
+  fg_color = "rgb(404040)",
+  size = 16,
 }
