@@ -1,5 +1,6 @@
 [arch]
 packages = [
+  "hyprpm",
   "7zip",
   "alacritty",
   "arandr",
