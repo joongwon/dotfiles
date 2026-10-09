@@ -396,9 +396,9 @@ local plugins = {
   ["ibhagwan/fzf-lua"] = function()
     local fzf = require "fzf-lua"
 
-    local base_fd = "fd --color=always -tf -td -tl -u -E .git -E node_modules -E __pycache__ -E .venv -- . "
+    local base_fd = "fd --color=always -tf -td -tl -u -E .git -E node_modules -E __pycache__ -E .venv -E _opam -- . "
     local base_rg =
-      "rg --column --line-number --no-heading --color=always --smart-case --hidden --glob '!.git/*' --glob '!node_modules/*' --glob '!__pycache__/*' --glob '!.venv/*' "
+      "rg --column --line-number --no-heading --color=always --smart-case --hidden --glob '!.git/*' --glob '!node_modules/*' --glob '!__pycache__/*' --glob '!.venv/*' --glob '!_opam/*' "
     vim.keymap.set("n", "<leader>ff", function()
       return fzf.fzf_exec(base_fd, { prompt = "files> ", actions = fzf.defaults.actions.files })
     end, { desc = "FZF Find files" })
