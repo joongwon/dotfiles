@@ -12,6 +12,7 @@ vim.fn.digraph_set("h>", "↪")
 vim.fn.digraph_set("l>", "⇝")
 vim.fn.digraph_set("Ni", "∉") -- N for "not", i for "in"
 vim.fn.digraph_set("|.", "∣")
+vim.fn.digraph_set("+T", "⊤")
 
 vim.fn.digraph_set("-/", "∖")
 

@@ -13,6 +13,7 @@ hl.on("hyprland.start", function()
   hl.exec_cmd "xrdb ~/.Xresources"
   hl.exec_cmd "thunderbird"
   hl.exec_cmd "hyprpm reload"
+  hl.exec_cmd "swaync"
 end)
 
 -- General configuration

@@ -12,6 +12,7 @@
       "pulseaudio",
       "clock",
       "tray",
+      "custom/notification",
     ],
     "include": ["~/.config/waybar/common.jsonc"],
   },
