@@ -14,6 +14,7 @@ vim.opt.listchars = "tab:→ ,eol:¬,nbsp:·,trail:•,extends:⟩,precedes:⟨"
 vim.opt.showbreak = "+++>"
 vim.opt.title = true
 vim.opt.foldcolumn = "1"
+vim.opt.termguicolors = true
 
 -- vim diagnostic
 vim.diagnostic.config { virtual_text = true }
