@@ -15,6 +15,7 @@ vim.opt.showbreak = "+++>"
 vim.opt.title = true
 vim.opt.foldcolumn = "1"
 vim.opt.termguicolors = true
+vim.opt.background = "light"
 
 -- vim diagnostic
 vim.diagnostic.config { virtual_text = true }
@@ -397,7 +398,7 @@ local plugins = {
   ["ibhagwan/fzf-lua"] = function()
     local fzf = require "fzf-lua"
 
-    local base_fd = "fd --color=always -tf -td -tl -u -E .git -E node_modules -E __pycache__ -E .venv -E _opam -- . "
+    local base_fd = "fd --color=always -H -tf -td -tl -u -E .git -E node_modules -E __pycache__ -E .venv -E _opam -- . "
     local base_rg =
       "rg --column --line-number --no-heading --color=always --smart-case --hidden --glob '!.git/*' --glob '!node_modules/*' --glob '!__pycache__/*' --glob '!.venv/*' --glob '!_opam/*' "
     vim.keymap.set("n", "<leader>ff", function()
