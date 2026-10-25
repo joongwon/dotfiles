@@ -16,7 +16,7 @@ vim.opt.showbreak = "+++>"
 vim.opt.title = true
 vim.opt.foldcolumn = "1"
 vim.opt.termguicolors = true
-vim.opt.background = "light"
+vim.opt.background = "dark"
 
 -- vim diagnostic
 vim.diagnostic.config { virtual_text = true }
@@ -25,7 +25,10 @@ vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, { desc = "Show diagn
 -- vim lsp keymaps
 vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, { desc = "Rename symbol" })
 vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, { desc = "Code action" })
-vim.cmd [[anoremenu PopUp.Find\ References <cmd>lua vim.lsp.buf.references()<cr>]]
+vim.keymap.set("n", "gd", vim.lsp.buf.definition, { desc = "Go to definition" })
+vim.keymap.set("n", "gD", vim.lsp.buf.declaration, { desc = "Go to declaration" })
+vim.keymap.set("n", "gi", vim.lsp.buf.implementation, { desc = "Go to implementation" })
+vim.keymap.set("n", "gr", vim.lsp.buf.references, { desc = "Find references" })
 
 -- miscellaneous keymaps
 vim.keymap.set("n", "gb", "<cmd>bnext<cr>", { desc = "Next buffer" })

@@ -1,0 +1,6 @@
+[Desktop Entry]
+Type=Application
+Name=Suspend
+Exec=systemctl suspend
+Terminal=false
+Categories=System;
