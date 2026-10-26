@@ -42,6 +42,17 @@ vim.api.nvim_create_autocmd("FileType", {
   end,
 })
 
+-- conceal
+vim.api.nvim_set_hl(0, "Conceal", { bg = "LightGray" })
+vim.keymap.set("n", "<leader>tc", function()
+  local conceallevel = vim.opt.conceallevel:get()
+  if conceallevel == 0 then
+    vim.opt.conceallevel = 2
+  else
+    vim.opt.conceallevel = 0
+  end
+end, { desc = "Toggle conceal" })
+
 -- filetypes
 vim.filetype.add {
   extension = {
