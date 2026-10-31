@@ -4,12 +4,14 @@ set -eu
 tlmgr_bin="$(command -v tlmgr || true)"
 [ -n "$tlmgr_bin" ] || { echo "tlmgr not found"; exit 1; }
 
+log_file_glob="./*.log ./aux/*.log ./out/*.log ./_aux/*.log"
+
 find_query_from_log() {
   log="${1:-}"
 
   if [ -z "$log" ]; then
     # 현재, aux, out 디렉터리에서 가장 최근 .log 하나 선택
-    log="$(ls -t ./*.log ./aux/*.log ./out/*.log 2>/dev/null | head -n1 || true)"
+    log="$(ls -t $log_file_glob 2>/dev/null | head -n1 || true)"
   fi
 
   [ -n "$log" ] || return 1

@@ -1,0 +1,2 @@
+#!/bin/bash
+exec sudo $(which tlmgr) update --self
