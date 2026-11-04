@@ -43,7 +43,7 @@ vim.api.nvim_create_autocmd("FileType", {
 })
 
 -- conceal
-vim.api.nvim_set_hl(0, "Conceal", { bg = "LightGray" })
+vim.api.nvim_set_hl(0, "Conceal", { bg = "Gray" })
 vim.keymap.set("n", "<leader>tc", function()
   local conceallevel = vim.opt.conceallevel:get()
   if conceallevel == 0 then

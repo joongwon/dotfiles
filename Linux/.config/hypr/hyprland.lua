@@ -168,14 +168,23 @@ hl.config {
 }
 
 -- Plugins
-hl.config {
-  plugin = {
-    hyprbars = {
-      bar_height = 24,
-      bar_text_size = 16,
+local success, _ = pcall(function()
+  hl.config {
+    plugin = {
+      hyprbars = {
+        bar_height = 24,
+        bar_text_size = 16,
+      },
     },
-  },
-}
+  }
+end)
+if not success then
+  hl.notification.create {
+    text = "Failed to load hyprbars plugin.",
+    timeout = 5000,
+    icon = "error",
+  }
+end
 
 hl.plugin.hyprbars.add_button {
   icon = "",
