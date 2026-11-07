@@ -1,6 +1,6 @@
 -- dependencies: tree-sitter-cli, lua-language-server, ocaml-lsp-server, basedpyright, stylua, ruff, ocamlformat, zathura, fzf, fd, ripgrep
 
--- vim options
+-- options
 vim.opt.expandtab = true
 vim.opt.shiftwidth = 2
 vim.opt.tabstop = 2
@@ -18,11 +18,11 @@ vim.opt.foldcolumn = "1"
 vim.opt.termguicolors = true
 vim.opt.background = "dark"
 
--- vim diagnostic
+-- diagnostic
 vim.diagnostic.config { virtual_text = true }
 vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, { desc = "Show diagnostics" })
 
--- vim lsp keymaps
+-- lsp keymaps
 vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, { desc = "Rename symbol" })
 vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, { desc = "Code action" })
 vim.keymap.set("n", "gd", vim.lsp.buf.definition, { desc = "Go to definition" })
@@ -41,6 +41,16 @@ vim.api.nvim_create_autocmd("FileType", {
     vim.api.nvim_set_hl(0, "jsonTrailingCommaError", {})
   end,
 })
+
+-- transparent background
+local next_normal_bg = "none"
+local function toggle_transparent()
+  local current_normal_bg = vim.api.nvim_get_hl(0, { name = "Normal" }).bg
+  vim.api.nvim_set_hl(0, "Normal", { bg = next_normal_bg })
+  next_normal_bg = current_normal_bg
+end
+toggle_transparent() -- default to transparent background
+vim.keymap.set("n", "<leader>tt", toggle_transparent, { desc = "Toggle transparent background" })
 
 -- conceal
 vim.api.nvim_set_hl(0, "Conceal", { bg = "Gray" })

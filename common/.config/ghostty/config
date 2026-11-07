@@ -7,3 +7,4 @@ keybind = ctrl+shift+l=next_tab
 keybind = ctrl+[=text:\x1b
 macos-option-as-alt = true
 clipboard-paste-protection = false
+background-opacity = 0.9
