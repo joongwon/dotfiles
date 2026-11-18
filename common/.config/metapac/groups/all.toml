@@ -71,7 +71,6 @@ packages = [
   "transmission-cli",
   "tree",
   "tree-sitter-cli",
-  "ttf-d2coding",
   "ttf-firacode-nerd",
   "ttf-inconsolata",
   "ttf-jetbrains-mono",

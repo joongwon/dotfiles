@@ -39,12 +39,12 @@ if [[ "$(uname)" == "Darwin" ]]; then
   alias oldls='/bin/ls'
   alias ls='newls'
 
-  export PROMPT='%F{#0000ff}%n@%m:%F{#ff0000}$(print -P %~ | iconv -f utf-8-mac -t utf-8) %f%# ';
+  export PROMPT='%F{#0000ff}%n@%m:%F{#00ffff}$(print -P %~ | iconv -f utf-8-mac -t utf-8) %f%# ';
   setopt PROMPT_SUBST
   export PATH="/usr/local/texlive/2026/bin/universal-darwin:$PATH"
 else
   alias ls='ls --color=auto'
-  export PROMPT='%F{blue}%n@%m:%F{red}%~ %f%# ';
+  export PROMPT='%F{blue}%n@%m:%F{cyan}%~ %f%# ';
 fi
 
 # Share .dircolors colors between fd and GNU ls on macOS and Linux.
