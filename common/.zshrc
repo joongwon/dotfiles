@@ -41,7 +41,6 @@ if [[ "$(uname)" == "Darwin" ]]; then
 
   export PROMPT='%F{#0000ff}%n@%m:%F{#00ffff}$(print -P %~ | iconv -f utf-8-mac -t utf-8) %f%# ';
   setopt PROMPT_SUBST
-  export PATH="/usr/local/texlive/2026/bin/universal-darwin:$PATH"
 else
   alias ls='ls --color=auto'
   export PROMPT='%F{blue}%n@%m:%F{cyan}%~ %f%# ';
